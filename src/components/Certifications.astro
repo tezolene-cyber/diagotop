@@ -1,0 +1,119 @@
+---
+---
+<section id="certifications" class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag anim">🏅 Certifications</div>
+      <h2 class="anim">Experts certifiés & agréés</h2>
+      <p class="section-sub anim">DIAGOTOP est un professionnel certifié, disposant de toutes les accréditations nécessaires pour réaliser vos diagnostics immobiliers en toute conformité.</p>
+    </div>
+
+    <div class="certif-grid">
+      <div class="certif-card anim">
+        <div class="certif-icon">📋</div>
+        <h3>Certification DPE</h3>
+        <p>Diagnostiqueur certifié pour le Diagnostic de Performance Énergétique, avec mention.</p>
+      </div>
+      <div class="certif-card anim">
+        <div class="certif-icon">🛡️</div>
+        <h3>Certification Amiante</h3>
+        <p>Certification pour le repérage des matériaux contenant de l'amiante (avec mention).</p>
+      </div>
+      <div class="certif-card anim">
+        <div class="certif-icon">⚡</div>
+        <h3>Électricité & Gaz</h3>
+        <p>Certifié pour les diagnostics des installations intérieures d'électricité et de gaz.</p>
+      </div>
+      <div class="certif-card anim">
+        <div class="certif-icon">🔧</div>
+        <h3>Assurance RCP</h3>
+        <p>Couvert par une assurance Responsabilité Civile Professionnelle pour tous nos diagnostics.</p>
+      </div>
+    </div>
+
+    <!-- Optionnel : Logos des organismes certificateurs -->
+    <div class="certif-logos anim">
+      <span>Organismes de certification :</span>
+      <div class="logos">
+        <span>DEKRA</span>
+        <span>BUREAU VERITAS</span>
+        <span>QUALIBAT</span>
+        <span>CERTIGAZ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .certif-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .certif-card {
+    background: white;
+    border-radius: 18px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .certif-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+  .certif-icon {
+    font-size: 42px;
+    margin-bottom: 16px;
+  }
+  .certif-card h3 {
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+  .certif-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .certif-logos {
+    margin-top: 48px;
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .certif-logos span {
+    font-size: 14px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 20px;
+  }
+  .logos span {
+    font-weight: 700;
+    color: var(--black);
+    font-size: 16px;
+    opacity: 0.7;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 992px) {
+    .certif-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 576px) {
+    .certif-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
