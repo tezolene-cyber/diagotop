@@ -1,5 +1,7 @@
 ---
 ---
+<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <section id="contact" class="section section-alt">
   <div class="container">
     <div class="text-center">
@@ -53,16 +55,43 @@
     </div>
   </div>
 </section>
+
 <script>
   const form = document.getElementById('devis-form');
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // Public Key
+    emailjs.init("GpQFvsgpHzOGz2OJw");
+
     const name = form.querySelector('[name="name"]').value.trim();
     const email = form.querySelector('[name="email"]').value.trim();
     const message = form.querySelector('[name="message"]').value.trim();
-    if (!name || !email || !message) { alert('Champs obligatoires manquants'); return; }
-    document.querySelector('.form-body').classList.add('hide');
-    document.getElementById('form-success').classList.add('show');
-    // Connexion EmailJS / Formspree possible ici
+    const phone = form.querySelector('[name="phone"]').value.trim();
+    const propertyType = form.querySelector('[name="property_type"]').value;
+
+    if (!name || !email || !message) {
+      alert('Veuillez remplir les champs obligatoires.');
+      return;
+    }
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      phone: phone,
+      property_type: propertyType,
+      message: message
+    };
+
+    // Service ID et Template ID
+    emailjs.send('service_8dwst1h', 'template_o02thia', templateParams)
+      .then(() => {
+        document.querySelector('.form-body').classList.add('hide');
+        document.getElementById('form-success').classList.add('show');
+      })
+      .catch((err) => {
+        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+        console.error('EmailJS error:', err);
+      });
   });
 </script>
