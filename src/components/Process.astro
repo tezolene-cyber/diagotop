@@ -1,0 +1,26 @@
+---
+const steps = [
+  { num: '1', title: 'Demande de devis', desc: 'Formulaire en ligne ou appel. Réponse sous 2h, devis gratuit.' },
+  { num: '2', title: 'Prise de RDV', desc: 'Créneau selon vos disponibilités, 7j/7 en Île-de-France.' },
+  { num: '3', title: 'Intervention', desc: 'Notre expert se déplace avec le matériel certifié.' },
+  { num: '4', title: 'Rapport remis', desc: 'Rapport complet par email sous 48h, valable immédiatement.' }
+];
+---
+<section id="process" class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag anim">🔄 Notre méthode</div>
+      <h2 class="anim">4 étapes simples</h2>
+      <p class="section-sub anim">Un processus rapide et transparent de votre demande à la remise du rapport.</p>
+    </div>
+    <div class="process-grid">
+      {steps.map((s) => (
+        <div class="process-card anim">
+          <div class="process-num">{s.num}</div>
+          <div class="process-title">{s.title}</div>
+          <div class="process-desc">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

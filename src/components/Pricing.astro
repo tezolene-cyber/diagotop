@@ -1,0 +1,32 @@
+---
+const plans = [
+  { name: 'Diagnostic Individuel', price: 'Dès 80 €', subtitle: 'Un seul diagnostic', features: ['Diagnostic au choix', 'Rapport sous 48h', 'Certification incluse'], popular: false },
+  { name: 'Pack Complet', price: 'Dès 450 €', subtitle: 'Tous les diagnostics obligatoires', features: ['DPE + Amiante + Plomb + Élec + Gaz', 'Rapport sous 48h', 'Certification incluse', 'Conseils de rénovation', 'Priorité de rendez-vous'], popular: true },
+  { name: 'Sur Mesure', price: 'Sur Devis', subtitle: 'Professionnels & volumes', features: ['Diagnostics à la carte', 'Grands volumes', 'Copropriétés', 'Tarifs préférentiels'], popular: false }
+];
+---
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag anim">💶 Tarifs</div>
+      <h2 class="anim">Des prix transparents</h2>
+      <p class="section-sub anim">Devis personnalisé gratuit selon votre bien et les diagnostics requis.</p>
+    </div>
+    <div class="pricing-grid">
+      {plans.map((plan) => (
+        <div class={`pricing-card anim ${plan.popular ? 'popular' : ''}`}>
+          {plan.popular && <div class="popular-badge">⭐ Le Plus Choisi</div>}
+          <div class="pricing-name" style={plan.popular ? 'color:white;' : ''}>{plan.name}</div>
+          <div class="pricing-price" style={plan.popular ? 'color:var(--gold);' : ''}>{plan.price}</div>
+          <div style={`margin-bottom:16px; ${plan.popular ? 'color:rgba(255,255,255,0.7);' : 'color:var(--muted);'}`}>{plan.subtitle}</div>
+          <div class="pricing-features">
+            {plan.features.map(f => <div class="pricing-feat">✓ {f}</div>)}
+          </div>
+          <a href="#contact" class={plan.popular ? 'btn btn-primary' : 'btn btn-dark'} style="width:100%;">
+            {plan.popular ? 'Choisir ce pack' : 'Obtenir un devis'}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

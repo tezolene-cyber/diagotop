@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { VILLES_DESSERVIES } from '../config/villes';
+---
+<BaseLayout title="Zones d'intervention - DIAGOTOP" description="Liste des villes où nous intervenons en Île-de-France pour vos diagnostics immobiliers.">
+  <section class="section" style="padding-top: 140px;">
+    <div class="container">
+      <h1>Zones d'intervention en Île-de-France</h1>
+      <p>DIAGOTOP intervient dans les villes suivantes :</p>
+      <ul style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px;">
+        {VILLES_DESSERVIES.map(ville => {
+          const nom = ville.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ');
+          return <li><a href={`/zone-intervention/${ville}`}>{nom}</a></li>;
+        })}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

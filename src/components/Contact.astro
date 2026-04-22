@@ -1,0 +1,68 @@
+---
+---
+<section id="contact" class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag anim">✉️ Contact</div>
+      <h2 class="anim">Demandez votre devis gratuit</h2>
+      <p class="section-sub anim">Réponse garantie sous 2 heures. Sans engagement.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info anim">
+        <div class="info-card"><div class="info-icon">📞</div><div><div class="info-label">Téléphone</div><div class="info-val">06 99 00 48 75</div></div></div>
+        <div class="info-card"><div class="info-icon">✉️</div><div><div class="info-label">Email</div><div class="info-val">diagotop.france@outlook.fr</div></div></div>
+        <div class="info-card"><div class="info-icon">📍</div><div><div class="info-label">Zone d'intervention</div><div class="info-val">Île-de-France</div></div></div>
+        <div class="info-card"><div class="info-icon">🕐</div><div><div class="info-label">Disponibilité</div><div class="info-val">Lun–Sam · 8h–19h</div></div></div>
+      </div>
+      <div class="form-card anim">
+        <div class="form-body">
+          <form id="devis-form">
+            <div class="form-row">
+              <div class="form-group"><label>Nom complet *</label><input type="text" name="name" required /></div>
+              <div class="form-group"><label>Téléphone</label><input type="tel" name="phone" /></div>
+            </div>
+            <div class="form-group"><label>Email *</label><input type="email" name="email" required /></div>
+            <div class="form-group">
+              <label>Type de bien</label>
+              <select name="property_type">
+                <option value="">Sélectionnez...</option>
+                <option>Appartement</option>
+                <option>Maison individuelle</option>
+                <option>Local commercial</option>
+                <option>Immeuble / copropriété</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Message *</label><textarea name="message" rows="4" placeholder="Décrivez votre besoin (adresse, surface, diagnostics souhaités...)" required></textarea></div>
+            <div class="form-group">
+              <label style="display:flex;align-items:flex-start;gap:8px;font-weight:normal;">
+                <input type="checkbox" name="rgpd" required style="width:auto;margin-top:2px;" />
+                <span>J'accepte que mes données soient utilisées pour être recontacté(e). <a href="/confidentialite" target="_blank" style="color:var(--gold);">Politique de confidentialité</a></span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">✈ Envoyer ma demande</button>
+            <p class="form-note">* Champs obligatoires. Devis gratuit et sans engagement.</p>
+          </form>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="success-icon">✅</div>
+          <div class="success-title">Message envoyé !</div>
+          <p class="success-sub">Nous vous répondrons dans les meilleurs délais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const form = document.getElementById('devis-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
+    if (!name || !email || !message) { alert('Champs obligatoires manquants'); return; }
+    document.querySelector('.form-body').classList.add('hide');
+    document.getElementById('form-success').classList.add('show');
+    // Connexion EmailJS / Formspree possible ici
+  });
+</script>

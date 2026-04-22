@@ -1,0 +1,31 @@
+---
+const testimonials = [
+  { stars: '★★★★★', text: '« Intervention rapide, très professionnel. Rapport clair et complet. Je recommande ! »', name: 'Sophie M.', role: 'Paris 12e', avatar: 'SM', bg: null },
+  { stars: '★★★★★', text: '« Réactif, disponible le samedi. Pack complet à tarif compétitif. Parfait pour ma vente. »', name: 'Karim D.', role: 'Vincennes', avatar: 'KD', bg: 'var(--green)' },
+  { stars: '★★★★★', text: '« Expert sérieux et ponctuel. Explications claires sur le DPE. Très satisfaite. »', name: 'Nadia B.', role: 'Boulogne', avatar: 'NB', bg: 'var(--lime)' }
+];
+---
+<section id="testimonials" class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag anim">⭐ Avis Clients</div>
+      <h2 class="anim">Ils nous font confiance</h2>
+      <p class="section-sub anim">Plus de 500 clients satisfaits en Île-de-France.</p>
+    </div>
+    <div class="testi-grid">
+      {testimonials.map((t) => (
+        <div class="testi-card anim">
+          <div class="testi-stars">{t.stars}</div>
+          <p class="testi-text">{t.text}</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style={t.bg ? `background:${t.bg};color:black;` : ''}>{t.avatar}</div>
+            <div>
+              <div class="testi-name">{t.name}</div>
+              <div class="testi-role">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
