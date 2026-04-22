@@ -1,3 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import Contact from '../../components/Contact.astro';
+import { VILLES_DESSERVIES } from '../../config/villes';
+
+export async function getStaticPaths() {
+  return VILLES_DESSERVIES.map(ville => ({ params: { ville } }));
+}
+
+const { ville } = Astro.params;
+const villeFormatee = ville
+  .split('-')
+  .map(mot => mot.charAt(0).toUpperCase() + mot.slice(1))
+  .join(' ');
+
+// Dictionnaire des descriptions personnalisées
 const descriptions: Record<string, string> = {
   // Paris (75)
   "paris-1": "Diagnostics immobiliers dans le 1er arrondissement de Paris : Louvre, Palais-Royal, Halles. Intervention rapide et certifiée.",
@@ -94,3 +111,91 @@ const descriptions: Record<string, string> = {
   "pontoise": "Diagnostics à Pontoise et sa région. Service professionnel pour vos transactions immobilières.",
   "herblay-sur-seine": "Diagnostics immobiliers à Herblay-sur-Seine et La Frette-sur-Seine. Rapport certifié."
 };
+
+const descriptionLocale = descriptions[ville] || `DIAGOTOP intervient à ${villeFormatee} et dans toute l'Île-de-France pour vos diagnostics immobiliers (DPE, Amiante, Plomb...). Devis gratuit et rapide.`;
+
+const titleSEO = `Diagnostic immobilier à ${villeFormatee} | DIAGOTOP Île-de-France`;
+const descSEO = `Expert certifié en diagnostics immobiliers à ${villeFormatee}. DPE, Amiante, Plomb, Électricité, Gaz... Intervention sous 48h. Devis gratuit.`;
+---
+
+<BaseLayout title={titleSEO} description={descSEO}>
+  <section class="section" style="padding-top: 140px;">
+    <div class="container">
+      <div class="text-center">
+        <div class="tag">📍 Zone d'intervention</div>
+        <h1>Diagnostic immobilier à <span class="grad">{villeFormatee}</span></h1>
+        <p class="section-sub">{descriptionLocale}</p>
+      </div>
+
+      <!-- Grille des diagnostics proposés -->
+      <div class="diag-grid" style="margin-top: 48px;">
+        <div class="diag-card"><div class="diag-icon">⚡</div><div class="diag-title">DPE</div><div class="diag-sub">Performance Énergétique</div><div class="diag-price">Dès 120 €</div></div>
+        <div class="diag-card"><div class="diag-icon">🛡️</div><div class="diag-title">Amiante</div><div class="diag-sub">Avant 1997</div><div class="diag-price">Dès 150 €</div></div>
+        <div class="diag-card"><div class="diag-icon">⚠️</div><div class="diag-title">Plomb</div><div class="diag-sub">Avant 1949</div><div class="diag-price">Dès 100 €</div></div>
+        <div class="diag-card"><div class="diag-icon">🔌</div><div class="diag-title">Électricité</div><div class="diag-sub">+15 ans</div><div class="diag-price">Dès 110 €</div></div>
+      </div>
+
+      <!-- Avantages locaux -->
+      <div style="margin-top: 60px; background: var(--bg); padding: 40px; border-radius: 24px;">
+        <h2 style="text-align: center; margin-bottom: 32px;">Pourquoi choisir DIAGOTOP à {villeFormatee} ?</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 12px;">🚗</div>
+            <h3>Intervention rapide</h3>
+            <p>Déplacement sous 24h dans tout {villeFormatee} et les communes limitrophes.</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 12px;">📋</div>
+            <h3>Rapport certifié</h3>
+            <p>Documents conformes à la réglementation, valables immédiatement.</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 12px;">⭐</div>
+            <h3>Recommandé</h3>
+            <p>Plus de 500 clients satisfaits en Île-de-France.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appel à l'action -->
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="/#contact" class="btn btn-primary" style="padding: 18px 40px;">📞 Obtenir un devis gratuit à {villeFormatee}</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+  <Contact />
+</BaseLayout>
+
+<style>
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .diag-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .diag-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(245,166,35,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 16px;
+  }
+  .diag-title { font-weight: 800; margin-bottom: 4px; }
+  .diag-sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .diag-price { font-weight: 700; color: var(--gold); }
+  @media (max-width: 768px) {
+    .diag-grid { grid-template-columns: 1fr; }
+  }
+</style>
