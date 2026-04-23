@@ -37,6 +37,37 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-XXXXXXXXXX';
     gtag('js', new Date());
     gtag('config', '${ga4Id}');
   </script>
+
+  <!-- Données structurées LocalBusiness -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "DIAGOTOP – Audit & Diagnostic",
+      "description": "Expert certifié en diagnostics immobiliers en Île-de-France",
+      "url": "https://www.diagotop.fr",
+      "logo": "https://www.diagotop.fr/img/logo.png",
+      "image": "https://www.diagotop.fr/img/logo.png",
+      "telephone": "06 99 00 48 75",
+      "email": "diagotop.france@outlook.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "64 Rue Francis de Pressensé",
+        "addressLocality": "Bezons",
+        "addressRegion": "Île-de-France",
+        "postalCode": "95870",
+        "addressCountry": "FR"
+      },
+      "areaServed": {
+        "@type": "Region",
+        "name": "Île-de-France"
+      },
+      "priceRange": "€€",
+      "sameAs": [
+        "https://www.diagotop.fr"
+      ]
+    }
+  </script>
 </head>
 <body>
   <Header />
