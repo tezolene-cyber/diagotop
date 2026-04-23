@@ -83,7 +83,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(rgba(245,166,35,0.30), rgba(245,166,35,0.30)),
+    linear-gradient(rgba(245,166,35,0.20), rgba(245,166,35,0.20)),
     url('/img/hero-bg.jpg') center/cover no-repeat;
   /* z-index laissé à auto (0) pour être au-dessus du fond parent mais sous .hero-grid */
 }
