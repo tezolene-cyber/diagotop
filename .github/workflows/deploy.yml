@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Generate sitemap
-        run: node scripts/generate-sitemap.js
+        run: node scripts/generate-sitemap.cjs
 
       - name: Install latest Vercel CLI
         run: npm install -g vercel@latest
