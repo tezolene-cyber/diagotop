@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://diagotop.fr',
+  site: 'https://www.diagotop.fr',
+  integrations: [sitemap()],
 });
