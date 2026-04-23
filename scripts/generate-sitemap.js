@@ -22,14 +22,11 @@ function walk(dir) {
 const files = walk(DIST_DIR).filter(f => f.endsWith('.html'));
 const urls = files.map(f => {
   let url = f.replace(DIST_DIR, '');
-  // Enlever /index.html final
   url = url.replace(/\/index\.html$/, '');
-  // Si l'URL est vide, c'est la racine
   if (url === '') url = '';
   return `${SITE_URL}${url}`;
 });
 
-// Supprimer les doublons (par sécurité)
 const uniqueUrls = [...new Set(urls)];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
