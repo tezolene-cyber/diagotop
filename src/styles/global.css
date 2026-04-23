@@ -66,9 +66,16 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 .mobile-menu.open { display: flex; }
 .mobile-menu a { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
 #hero {
-  min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px;
-  background: radial-gradient(ellipse at 20% 30%, rgba(245,166,35,0.08) 0%, transparent 50%),
-              radial-gradient(ellipse at 80% 70%, rgba(93,183,97,0.06) 0%, transparent 50%), var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+  /* Image de fond + overlay doré semi‑transparent */
+  background: 
+    linear-gradient(rgba(245,166,35,0.15), rgba(245,166,35,0.15)),
+    url('/img/hero-bg.jpg') center/cover no-repeat;
+  /* Fallback si l’image ne charge pas */
+  background-color: var(--bg);
 }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .hero-title { font-size: clamp(42px, 6vw, 64px); font-weight: 900; line-height: 1.1; color: var(--black); margin-bottom: 24px; }
