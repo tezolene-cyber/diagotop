@@ -203,6 +203,17 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .testi-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+
+  /* Espacement des boutons CTA sur mobile */
+  .cta-btns {
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+  }
+  .cta-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
