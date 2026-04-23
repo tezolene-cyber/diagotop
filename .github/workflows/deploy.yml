@@ -20,13 +20,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate sitemap in public/
+        run: node scripts/generate-sitemap.cjs
+
       - name: Build Astro site
         run: npm run build
 
-      - name: Generate sitemap
-        run: node scripts/generate-sitemap.cjs
-
-      - name: Debug - Check sitemap exists
+      - name: Debug - Check sitemap in dist
         run: ls -l dist/sitemap.xml
 
       - name: Install latest Vercel CLI
