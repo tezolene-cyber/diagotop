@@ -145,14 +145,14 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
-  padding: 30px 40px;           /* identique au bloc de gauche */
+  padding: 30px;               /* réduit à 30px partout pour gagner en largeur */
   box-shadow: var(--shadow);
   border: 1px solid rgba(255,255,255,0.3);
   text-align: center;
 }
 
 .dpe-card img {
-  max-width: 100%;               /* occupe toute la largeur disponible */
+  max-width: 85%;               /* occupe toute la largeur disponible */
   height: auto;
   margin: 0 auto 20px;
 }
