@@ -12,23 +12,139 @@
           <a href="#diagnostics" class="btn btn-outline">Nos Diagnostics</a>
         </div>
         <div class="hero-trust anim">
-          <div class="trust-item"><span class="trust-check">✓</span> +500 diagnostics</div>
+          <div class="trust-item"><span class="trust-check">✓</span> +5000 diagnostics</div>
           <div class="trust-item"><span class="trust-check">✓</span> Disponible 6j/7</div>
           <div class="trust-item"><span class="trust-check">✓</span> Rapport sous 48h</div>
         </div>
       </div>
+
       <div class="anim">
         <div class="dpe-card">
-          <img src="/img/logo.png" alt="DIAGOTOP" width="200" height="80" />
-          <div class="dpe-card-title">DIAGOTOP</div>
-          <div class="dpe-card-sub">Audit & Diagnostic</div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#2d9e3f">A</span><div class="dpe-bar" style="width:88%;background:#2d9e3f">Très performant</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#5DB761">B</span><div class="dpe-bar" style="width:74%;background:#5DB761">Performant</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#C8D400">C</span><div class="dpe-bar" style="width:60%;background:#C8D400">Assez bon</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#F5A623">D</span><div class="dpe-bar" style="width:46%;background:#F5A623">Peu efficace</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#f97316">E</span><div class="dpe-bar" style="width:32%;background:#f97316">Passoire</div></div>
+          <!-- Logo conservé en haut -->
+          <img src="/img/logo.jpg" alt="DIAGOTOP" width="200" height="80" fetchpriority="high" />
+
+          <!-- Étiquette DPE réaliste (7 classes) -->
+          <div class="dpe-label">
+            <div class="dpe-header">Diagnostic de Performance Énergétique</div>
+            <div class="dpe-scale">
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#009640;">A</span>
+                <span class="dpe-label-text">Très performant</span>
+              </div>
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#2EA043;">B</span>
+                <span class="dpe-label-text">Performant</span>
+              </div>
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#66A825;">C</span>
+                <span class="dpe-label-text">Assez bon</span>
+              </div>
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#F5C518;">D</span>
+                <span class="dpe-label-text">Peu efficace</span>
+              </div>
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#F39200;">E</span>
+                <span class="dpe-label-text">Énergivore</span>
+              </div>
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#E94E1A;">F</span>
+                <span class="dpe-label-text">Très énergivore</span>
+              </div>
+              <div class="dpe-row">
+                <span class="dpe-letter" style="background:#DA251D;">G</span>
+                <span class="dpe-label-text">Passoire thermique</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .dpe-card {
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .dpe-card img {
+    max-width: 180px;
+    margin: 0 auto 20px;
+  }
+
+  .dpe-label {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .dpe-header {
+    background: #1A1A1A;
+    color: white;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .dpe-scale {
+    padding: 4px 0;
+  }
+
+  .dpe-row {
+    display: flex;
+    align-items: center;
+    margin: 4px 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .dpe-letter {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  .dpe-label-text {
+    flex: 1;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #333;
+    text-align: left;
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .dpe-card {
+      padding: 16px;
+    }
+    .dpe-card img {
+      max-width: 140px;
+    }
+    .dpe-row {
+      margin: 3px 8px;
+    }
+    .dpe-letter {
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+    }
+    .dpe-label-text {
+      font-size: 12px;
+    }
+  }
+</style>
