@@ -78,10 +78,10 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 .trust-item { display: flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 500; }
 .trust-check { color: var(--green); font-weight: bold; }
 .dpe-card {
-  background: white; border-radius: 24px; padding: 20px 32px; box-shadow: var(--shadow);
+  background: white; border-radius: 24px; padding: 20px 40px; box-shadow: var(--shadow);
   border: 1px solid rgba(245,166,35,0.1); text-align: center;
 }
-.dpe-card img { max-width: 200px; margin: 0 auto 12px; }
+.dpe-card img { max-width: 220px; margin: 0 auto 12px; }
 .dpe-card-title { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
 .dpe-card-sub { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
 .dpe-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
