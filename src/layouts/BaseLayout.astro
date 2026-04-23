@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
-const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-XXXXXXXXXX';
+const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
 ---
 
 <!DOCTYPE html>
@@ -28,18 +28,17 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-XXXXXXXXXX';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Préchargement de la police Inter pour améliorer le LCP -->
+  <!-- Préchargement de la police Inter -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" crossorigin />
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics 4 -->
-  <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
-  <script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR"></script>
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '{ga4Id}');
+    gtag('config', 'G-193H6KEEYR');
   </script>
 
   <!-- Données structurées LocalBusiness -->
