@@ -41,7 +41,7 @@ const principalesVilles = VILLES_DESSERVIES.slice(0, 5);
           const nom = v.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ');
           return <a href={`/zone-intervention/${v}`}>{nom}</a>;
         })}
-        <a href="/zones-intervention">Toutes les villes →</a>
+        <a href="/zones-intervention" style="font-weight:700; color: var(--gold);">Toutes les villes →</a>
       </div>
     </div>
     <div class="footer-bottom">
