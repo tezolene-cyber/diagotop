@@ -85,7 +85,6 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   background: 
     linear-gradient(rgba(245,166,35,0.20), rgba(245,166,35,0.20)),
     url('/img/hero-bg.jpg') center/cover no-repeat;
-  /* z-index laissé à auto (0) pour être au-dessus du fond parent mais sous .hero-grid */
 }
 
 .hero-grid {
@@ -97,45 +96,21 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   align-items: center;
 }
 
-.hero-title {
-  font-size: clamp(42px, 6vw, 64px);
-  font-weight: 900;
-  line-height: 1.1;
-  color: #ffffff;
-  text-shadow: 
-    0 4px 16px rgba(0,0,0,0.5),
-    0 0 8px rgba(0,0,0,0.4);
-  -webkit-text-stroke: 1px rgba(0,0,0,0.2);
-  margin-bottom: 24px;
+/* Bloc de texte à gauche avec fond semi-transparent */
+.hero-grid > div:first-child {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
-.hero-desc {
-  font-size: 18px;
-  color: #ffffff;
-  text-shadow: 
-    0 2px 10px rgba(0,0,0,0.4),
-    0 0 4px rgba(0,0,0,0.3);
-  -webkit-text-stroke: 0.5px rgba(0,0,0,0.2);
-  margin-bottom: 32px;
-  max-width: 500px;
-}
-
-.hero-btns {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 40px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
+.hero-title { font-size: clamp(42px, 6vw, 64px); font-weight: 900; line-height: 1.1; color: var(--black); margin-bottom: 24px; }
+.hero-desc { font-size: 18px; color: var(--text); margin-bottom: 32px; max-width: 500px; }
+.hero-btns { display: flex; gap: 16px; margin-bottom: 40px; }
 .hero-trust { display: flex; gap: 24px; }
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  font-weight: 500;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-}
+.trust-item { display: flex; align-items: center; gap: 8px; color: var(--text); font-weight: 500; }
 .trust-check { color: var(--green); font-weight: bold; }
 .dpe-card {
   background: white; border-radius: 24px; padding: 20px 50px; box-shadow: var(--shadow);
@@ -264,6 +239,7 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
 
 @media (max-width: 992px) {
   .hero-grid { grid-template-columns: 1fr; }
+  .hero-grid > div:first-child { margin-bottom: 20px; }
   .diag-grid { grid-template-columns: repeat(2,1fr); }
   .process-grid { grid-template-columns: repeat(2,1fr); }
   .pricing-grid { grid-template-columns: 1fr; }
@@ -280,7 +256,6 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
 
-  /* Espacement des boutons CTA sur mobile */
   .cta-btns {
     flex-direction: column;
     width: 100%;
