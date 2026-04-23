@@ -21,11 +21,21 @@ img { max-width: 100%; height: auto; display: block; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section { padding: 80px 0; }
 .section-alt { background: var(--bg); }
+
+/* Badge « Certifiés par l’État » en blanc sur fond orange */
 .tag {
-  display: inline-block; background: rgba(245,166,35,0.12); color: var(--gold);
-  padding: 6px 16px; border-radius: 30px; font-size: 13px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;
+  display: inline-block;
+  background: var(--gold);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
 }
+
 h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); line-height: 1.2; margin-bottom: 16px; }
 .section-sub { font-size: 18px; color: var(--muted); max-width: 600px; margin-bottom: 48px; }
 .text-center { text-align: center; }
@@ -96,37 +106,54 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   align-items: center;
 }
 
-/* Bloc de texte à gauche avec fond semi-transparent */
+/* Bloc de texte à gauche (fond vitré) */
 .hero-grid > div:first-child {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 24px;
-  padding: 30px;
+  padding: 30px 40px;           /* aligné avec la carte DPE */
   border: 1px solid rgba(255,255,255,0.3);
 }
 
 .hero-title { font-size: clamp(42px, 6vw, 64px); font-weight: 900; line-height: 1.1; color: var(--black); margin-bottom: 24px; }
-.hero-desc { font-size: 18px; color: var(--text); margin-bottom: 32px; max-width: 500px; }
+
+/* Description plus foncée */
+.hero-desc {
+  font-size: 18px;
+  color: #000000;                /* noir pur */
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
 .hero-btns { display: flex; gap: 16px; margin-bottom: 40px; }
 .hero-trust { display: flex; gap: 24px; }
-.trust-item { display: flex; align-items: center; gap: 8px; color: var(--text); font-weight: 500; }
+
+/* Items de confiance plus foncés */
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000000;                /* noir pur */
+  font-weight: 500;
+}
 .trust-check { color: var(--green); font-weight: bold; }
 
-/* ===== CARTE DPE VITRÉE ===== */
+/* ===== CARTE DPE VITRÉE (proportions identiques au bloc de gauche) ===== */
 .dpe-card {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
-  padding: 30px 40px;
+  padding: 30px 40px;           /* identique au bloc de gauche */
   box-shadow: var(--shadow);
   border: 1px solid rgba(255,255,255,0.3);
   text-align: center;
 }
 
 .dpe-card img {
-  max-width: 260px;          /* logo agrandi */
+  max-width: 100%;               /* occupe toute la largeur disponible */
+  height: auto;
   margin: 0 auto 20px;
 }
 
@@ -134,7 +161,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;            /* resserré */
 }
 
 .dpe-letter {
@@ -160,12 +187,13 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-/* Animation légère au survol des barres DPE */
+/* Animation légère au survol */
 .dpe-card:hover .dpe-bar {
-  filter: brightness(1.15);
+  filter: brightness(1.1);
   transition: filter 0.3s ease;
 }
 
+/* Grilles etc. (inchangé) */
 .diag-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
 .diag-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border); transition: all 0.2s; }
 .diag-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
