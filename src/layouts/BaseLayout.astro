@@ -42,6 +42,12 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-XXXXXXXXXX';
     gtag('config', '${ga4Id}');
   </script>
 
+  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+
   <!-- Données structurées LocalBusiness -->
   <script type="application/ld+json">
     {
