@@ -161,7 +161,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 }
 
 .dpe-card img {
-  max-width: 240px;               /* occupe toute la largeur disponible */
+  max-width: 360px;               /* occupe toute la largeur disponible */
   height: auto;
   margin: 0 auto 20px;
 }
