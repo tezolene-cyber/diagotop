@@ -363,16 +363,6 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   color: var(--black);
 }
 
-@media (max-width: 992px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-grid > div:first-child { margin-bottom: 20px; }
-  .diag-grid { grid-template-columns: repeat(2,1fr); }
-  .process-grid { grid-template-columns: repeat(2,1fr); }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .testi-grid { grid-template-columns: repeat(2,1fr); }
-  .contact-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .burger { display: block; }
@@ -382,29 +372,45 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
 
-  /* --- Correction responsive Hero --- */
+  /* --- Correction responsive Hero (fenêtres vitrées) --- */
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;                     /* réduit l’espace entre les deux blocs */
   }
-  .hero-grid > div:first-child {
-    padding: 20px;
-    height: auto;
-  }
+  .hero-grid > div:first-child,
   .dpe-card {
-    padding: 20px;
+    padding: 16px;                 /* padding intérieur réduit au maximum */
     height: auto;
+  }
+  .hero-title {
+    font-size: 32px;               /* texte plus petit pour tenir en largeur */
+    margin-bottom: 16px;
+  }
+  .hero-desc {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .hero-btns {
+    flex-direction: column;        /* les boutons passent l’un sous l’autre */
+    gap: 12px;
+  }
+  .hero-btns .btn {
+    width: 100%;                   /* pleine largeur */
+    justify-content: center;
   }
   .dpe-card img {
-    max-width: 160px;
+    max-width: 140px;              /* logo encore plus petit si nécessaire */
   }
   .dpe-bar {
-    height: 28px;
+    height: 26px;                  /* barres plus fines */
     font-size: 11px;
   }
   .dpe-letter {
     font-size: 14px;
-    width: 22px;
+    width: 20px;
+  }
+  .dpe-bar-row {
+    margin-bottom: 4px;
   }
   /* --------------------------------- */
 
