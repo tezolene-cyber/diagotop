@@ -373,17 +373,26 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .footer-grid { grid-template-columns: 1fr; }
 
   /* --- Correction responsive Hero (fenêtres vitrées) --- */
+  .container {
+    padding: 0 16px;               /* réduit la marge latérale */
+  }
   .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;                     /* réduit l’espace entre les deux blocs */
+    grid-template-columns: 1fr;    /* une seule colonne */
+    gap: 20px;
+    justify-items: start;          /* aligne les blocs à gauche */
+    align-items: start;
   }
   .hero-grid > div:first-child,
   .dpe-card {
-    padding: 16px;                 /* padding intérieur réduit au maximum */
+    width: 100%;                   /* prend toute la largeur disponible */
+    max-width: 100%;
+    padding: 16px;
     height: auto;
+    margin-left: 0;                /* supprime toute marge gauche */
+    margin-right: auto;            /* colle à gauche */
   }
   .hero-title {
-    font-size: 32px;               /* texte plus petit pour tenir en largeur */
+    font-size: 32px;
     margin-bottom: 16px;
   }
   .hero-desc {
@@ -391,18 +400,18 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
     margin-bottom: 24px;
   }
   .hero-btns {
-    flex-direction: column;        /* les boutons passent l’un sous l’autre */
+    flex-direction: column;
     gap: 12px;
   }
   .hero-btns .btn {
-    width: 100%;                   /* pleine largeur */
+    width: 100%;
     justify-content: center;
   }
   .dpe-card img {
-    max-width: 140px;              /* logo encore plus petit si nécessaire */
+    max-width: 140px;
   }
   .dpe-bar {
-    height: 26px;                  /* barres plus fines */
+    height: 26px;
     font-size: 11px;
   }
   .dpe-letter {
