@@ -29,7 +29,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: white;
   padding: 6px 16px;          /* ou la valeur que tu préfères */
   border-radius: 30px;
-  font-size: 13px;
+  font-size: 8px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -161,7 +161,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 }
 
 .dpe-card img {
-  max-width: 160px;               /* occupe toute la largeur disponible */
+  max-width: 240px;               /* occupe toute la largeur disponible */
   height: auto;
   margin: 0 auto 20px;
 }
