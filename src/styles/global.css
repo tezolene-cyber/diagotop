@@ -82,7 +82,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 100px 0 60px;
   position: relative;
   z-index: 0;
   overflow: hidden;
@@ -103,7 +103,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 40px;
   align-items: stretch;
 }
 
@@ -134,8 +134,8 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
-  padding: 30px 40px;
-  box-shadow: var(--shadow);
+  padding: 20px 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
   border: 1px solid rgba(255,255,255,0.3);
   text-align: center;
   height: 100%;
@@ -298,26 +298,36 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
 
-  /* ----- Hero responsive réparé ----- */
-  .container { padding: 0 12px; }                     /* un peu plus d'air sur les côtés */
+  /* ----- Hero responsive ----- */
+  .container { padding: 0 12px; }
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 24px;
-    justify-items: center;      /* centre les blocs */
+    justify-items: center;
     align-items: center;
   }
   .hero-grid > div:first-child,
   .dpe-card {
-    width: calc(100vw - 24px);  /* largeur auto en tenant compte du padding du container */
+    width: calc(100vw - 24px);
     max-width: 100%;
-    padding: 20px;
+    padding: 16px;
     height: auto;
-    margin: 0 auto;             /* centre horizontalement */
+    margin: 0 auto;
   }
   .hero-title { font-size: 32px; margin-bottom: 12px; }
-  .hero-desc { font-size: 15px; margin-bottom: 20px; }
+  .hero-desc { font-size: 15px; margin-bottom: 20px; max-width: none; }
   .hero-btns { flex-direction: column; gap: 12px; margin-bottom: 30px; }
   .hero-btns .btn { width: 100%; justify-content: center; }
+  .hero-trust {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .trust-item {
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+  }
   .dpe-card img { max-width: 140px; }
   .dpe-bar { height: 28px; font-size: 12px; }
   .dpe-letter { font-size: 16px; width: 24px; }
