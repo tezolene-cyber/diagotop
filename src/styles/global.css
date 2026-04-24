@@ -27,14 +27,14 @@ img { max-width: 100%; height: auto; display: block; }
   display: inline-block;
   background: var(--gold);
   color: white;
-  padding: 6px 16px;          /* ou la valeur que tu préfères */
+  padding: 6px 16px;
   border-radius: 30px;
   font-size: 8px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 16px;
-  align-self: flex-start;      /* ← cette ligne règle le problème */
+  align-self: flex-start;
 }
 
 h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); line-height: 1.2; margin-bottom: 16px; }
@@ -126,7 +126,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 /* Description plus foncée */
 .hero-desc {
   font-size: 18px;
-  color: #000000;                /* noir pur */
+  color: #000000;
   margin-bottom: 32px;
   max-width: 500px;
 }
@@ -139,7 +139,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #000000;                /* noir pur */
+  color: #000000;
   font-weight: 500;
 }
 .trust-check { color: var(--green); font-weight: bold; }
@@ -161,7 +161,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 }
 
 .dpe-card img {
-  max-width: 240px;               /* occupe toute la largeur disponible */
+  max-width: 240px;
   height: auto;
   margin: 0 auto 20px;
 }
@@ -170,7 +170,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;            /* resserré */
+  margin-bottom: 6px;
 }
 
 .dpe-letter {
@@ -202,7 +202,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   transition: filter 0.3s ease;
 }
 
-/* Grilles etc. (inchangé) */
+/* Grilles etc. */
 .diag-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
 .diag-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border); transition: all 0.2s; }
 .diag-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
@@ -317,7 +317,7 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   background: var(--black);
   color: white;
   z-index: 10000;
-  display: none;                /* caché par défaut, affiché via JS si pas de consentement */
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 16px 24px;
@@ -381,6 +381,32 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .testi-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+
+  /* --- Correction responsive Hero --- */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-grid > div:first-child {
+    padding: 20px;
+    height: auto;
+  }
+  .dpe-card {
+    padding: 20px;
+    height: auto;
+  }
+  .dpe-card img {
+    max-width: 160px;
+  }
+  .dpe-bar {
+    height: 28px;
+    font-size: 11px;
+  }
+  .dpe-letter {
+    font-size: 14px;
+    width: 22px;
+  }
+  /* --------------------------------- */
 
   .cta-btns {
     flex-direction: column;
