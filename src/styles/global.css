@@ -308,6 +308,61 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   font-size: 20px; box-shadow: 0 4px 12px rgba(245,166,35,0.4); z-index: 999;
 }
 
+/* ===== BANDEAU COOKIES RGPD ===== */
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--black);
+  color: white;
+  z-index: 10000;
+  display: none;                /* caché par défaut, affiché via JS si pas de consentement */
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 1.4;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.cookie-consent.show {
+  display: flex;
+}
+.cookie-consent a {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.cookie-consent .cookie-btns {
+  display: flex;
+  gap: 10px;
+}
+.cookie-consent .btn-cookie {
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
+.btn-cookie.accept {
+  background: var(--gold);
+  color: white;
+}
+.btn-cookie.accept:hover {
+  background: #e8950f;
+}
+.btn-cookie.refuse {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+.btn-cookie.refuse:hover {
+  background: white;
+  color: var(--black);
+}
+
 @media (max-width: 992px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-grid > div:first-child { margin-bottom: 20px; }
@@ -335,6 +390,11 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   .cta-btns .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .cookie-consent {
+    flex-direction: column;
+    text-align: center;
   }
 }
 @keyframes fadeUp {
