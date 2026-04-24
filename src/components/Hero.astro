@@ -1,38 +1,45 @@
----
----
-<section id="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="tag anim">🛡 Certifiés par l'État</div>
-        <h1 class="hero-title anim">Diagnostics <br>Immobiliers <br><span class="grad">Certifiés</span></h1>
-        <p class="hero-desc anim">DPE, Amiante, Plomb, Électricité et plus. Intervention dans toute l'<strong>Île-de-France</strong>. Rapport sous 48h, disponible 6j/7.</p>
-        <div class="hero-btns anim">
-          <a href="#contact" class="btn btn-primary">Obtenir un Devis →</a>
-          <a href="#diagnostics" class="btn btn-outline">Nos Diagnostics</a>
-        </div>
-        <div class="hero-trust anim">
-          <div class="trust-item"><span class="trust-check">✓</span> +5000 diagnostics</div>
-          <div class="trust-item"><span class="trust-check">✓</span> Disponible 6j/7</div>
-          <div class="trust-item"><span class="trust-check">✓</span> Rapport sous 48h</div>
-        </div>
-      </div>
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .burger { display: block; }
+  .diag-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
 
-      <div class="anim">
-        <div class="dpe-card">
-          <!-- Logo agrandi -->
-          <img src="/img/logo2.png" alt="DIAGOTOP" fetchpriority="high" />
+  /* --- Correction responsive Hero --- */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-grid > div:first-child {
+    padding: 20px;
+    height: auto;
+  }
+  .dpe-card {
+    padding: 20px;
+    height: auto;
+  }
+  .dpe-card img {
+    max-width: 160px;
+  }
+  .dpe-bar {
+    height: 28px;
+    font-size: 11px;
+  }
+  .dpe-letter {
+    font-size: 14px;
+    width: 22px;
+  }
+  /* --------------------------------- */
 
-          <!-- Barres DPE officielles (couleurs réalistes) -->
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#009640;">A</span><div class="dpe-bar" style="width:94%;background:#009640;">Très performant</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#5DB761;">B</span><div class="dpe-bar" style="width:82%;background:#5DB761;">Performant</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#C8D400;">C</span><div class="dpe-bar" style="width:70%;background:#C8D400;">Bon</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#F5A623;">D</span><div class="dpe-bar" style="width:58%;background:#F5A623;">Peu efficace</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#F39200;">E</span><div class="dpe-bar" style="width:46%;background:#F39200;">Énergivore</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#E94E1A;">F</span><div class="dpe-bar" style="width:34%;background:#E94E1A;">Très énergivore</div></div>
-          <div class="dpe-bar-row"><span class="dpe-letter" style="color:#DA251D;">G</span><div class="dpe-bar" style="width:22%;background:#DA251D;">Passoire</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  .cta-btns {
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+  }
+  .cta-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
