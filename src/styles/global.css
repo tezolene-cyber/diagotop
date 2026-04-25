@@ -1,3 +1,41 @@
+/* === Inter (locale) === */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/inter-v20-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/inter-v20-latin-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/inter-v20-latin-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/inter-v20-latin-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/inter-v20-latin-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/inter-v20-latin-900.woff2') format('woff2');
+}
+
 :root {
   --black: #1A1A1A;
   --gold: #F5A623;
@@ -128,7 +166,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 .trust-item { display: flex; align-items: center; gap: 8px; color: #000000; font-weight: 500; }
 .trust-check { color: var(--green); font-weight: bold; }
 
-/* ===== CARTE DPE VITRÉE (proportions identiques au bloc de gauche) ===== */
+/* ===== CARTE DPE VITRÉE ===== */
 .dpe-card {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16px);
