@@ -1,23 +1,37 @@
 [
   {
+    "title": "DPE 2026 : réformes, incertitudes et avenir de la rénovation",
+    "link": "https://www.quotidiag.fr/dpe-2026-reformes-incertitudes-et-avenir-de-la-renovation/",
+    "description": "Le DPE fête ses 20 ans en 2026. Passage en revue des principaux changements depuis le 1er janvier : attestations de changement d'étiquette téléchargeables sur l'Observatoire DPE-AUDIT de l'ADEME, modification du coefficient de conversion de l'électricité (CEP passant de 2,3 à 1,9), DPE collectif obligatoire élargi aux copropriétés de moins de 50 lots. 700 000 résidences principales devraient sortir du statut de passoire thermique.",
+    "pubDate": "2026-01-05",
+    "source": "Quotidiag"
+  },
+  {
+    "title": "Audit, DPE et CEP électricité : FAQ",
+    "link": "https://www.quotidiag.fr/audit-dpe-et-cep-electricite-faq/",
+    "description": "Le passage du coefficient de conversion de l'électricité de 2,3 à 1,9 entre en vigueur en 2026. La décision est actée : le projet d'arrêté a été transmis au Conseil supérieur de l'énergie et les éditeurs de logiciels travaillent déjà à son intégration. La FAQ répond aux questions des diagnostiqueurs et de leurs clients : pourquoi cette réforme, quels logements sont concernés, et pourquoi le Premier ministre a évoqué 850 000 logements qui pourraient sortir du statut de passoire thermique.",
+    "pubDate": "2025-07-15",
+    "source": "Quotidiag"
+  },
+  {
     "title": "Le DPE bientôt exigé après des travaux de rénovation importante et lors de la reconduction du bail",
     "link": "https://infodiag.fr/le-dpe-bientot-exige-apres-des-travaux-de-renovation-importante-et-lors-de-la-reconduction-du-bail/",
-    "description": "Le projet de loi DDAUE ajoute deux nouveaux cas pour lesquels un DPE sera obligatoire : lors du renouvellement d'un bail et après une rénovation importante. La directive européenne doit être transposée avant le 29 mai 2026.",
+    "description": "Le projet de loi DDAUE ajoute deux nouveaux cas pour lesquels un DPE sera obligatoire : lors du renouvellement d'un bail et après une rénovation importante (coût des travaux ≥ 25% de la valeur du bien). La directive européenne doit être transposée avant le 29 mai 2026.",
     "pubDate": "2026-04-21",
     "source": "Infodiag"
   },
   {
-    "title": "DPE modifiés : quelles règles du jeu pour les diagnostiqueurs ?",
-    "link": "https://infodiag.fr/dpe-modifies-quelles-regles-du-jeu-pour-les-diagnostiqueurs/",
-    "description": "Le député interpelle le ministère sur les critères précis pour modifier un DPE déjà réalisé. Une question au cœur de l'actualité réglementaire.",
-    "pubDate": "2026-04-22",
-    "source": "Infodiag"
+    "title": "MaPrimeRénov', rendez-vous obligatoire avant dépôt du dossier",
+    "link": "https://www.quotidiag.fr/maprimerenov-rendez-vous-obligatoire-avant-depot-du-dossier/",
+    "description": "Le ministre du Logement a annoncé que la réouverture de MaPrimeRénov' s'accompagnerait d'une nouvelle obligation pour lutter contre les fraudes : un rendez-vous personnalisé avec un conseiller France Rénov' deviendra obligatoire avant de déposer une demande d'aide pour une rénovation d'ampleur. L'arrêté du 20 février 2026 formalise cette obligation et s'applique aux demandes déposées à compter du 1er janvier 2026.",
+    "pubDate": "2026-02-10",
+    "source": "Quotidiag"
   },
   {
-    "title": "Vincent Jeanbrun : « La filière doit parler d'une seule voix »",
-    "link": "https://infodiag.fr/vincent-jeanbrun-la-filiere-doit-parler-dune-seule-voix/",
-    "description": "Les Assises du diagnostic immobilier arriveront très vite, dès le 21 mai. Toute la chaîne de la profession est concernée.",
-    "pubDate": "2026-04-18",
-    "source": "Infodiag"
+    "title": "MaPrimeRénov' – Le mode d'emploi (mars 2026)",
+    "link": "https://www.quotidiag.fr/maprimerenov-le-mode-demploi-mars-2026/",
+    "description": "La nouvelle édition du Mode d'emploi MaPrimeRénov' a été publiée le 11 mars 2026 par l'Anah. Principaux changements par rapport à septembre 2025 : évolution des plafonds de ressources en Île-de-France et ailleurs, suppression de certaines aides (chaudière bois, isolation thermique des murs), et ajout d'une partie sur les travaux éligibles en maison ou appartement.",
+    "pubDate": "2026-03-11",
+    "source": "Quotidiag"
   }
 ]
