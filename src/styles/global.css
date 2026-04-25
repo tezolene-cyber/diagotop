@@ -22,14 +22,14 @@ img { max-width: 100%; height: auto; display: block; }
 .section { padding: 80px 0; }
 .section-alt { background: var(--bg); }
 
-/* Badge « Certifiés par l’État » en blanc sur fond orange – contraste amélioré */
+/* Badge « Certifiés par l’État » en blanc sur fond orange */
 .tag {
   display: inline-block;
-  background: #e08e0b;            /* doré plus foncé pour un meilleur contraste */
+  background: var(--gold);
   color: white;
-  padding: 6px 18px;
+  padding: 6px 16px;
   border-radius: 30px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -236,22 +236,20 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 .cta-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
 .cta-title { color: white; margin-bottom: 8px; }
 .cta-sub { color: rgba(255,255,255,0.6); max-width: 500px; }
-
-/* ===== FOOTER – contraste amélioré ===== */
 footer { background: var(--black); color: white; padding: 60px 0 30px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 .footer-brand img { width: 60px; margin-bottom: 16px; }
-.footer-brand p { color: rgba(255,255,255,0.8); font-size: 14px; max-width: 280px; }
+.footer-brand p { color: rgba(255,255,255,0.6); font-size: 14px; max-width: 280px; }
 .footer-col-title { color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-bottom: 20px; }
-.footer-col a, .footer-col span { display: block; color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 10px; }
+.footer-col a, .footer-col span { display: block; color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 10px; }
 .footer-col a:hover { color: white; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
-  gap: 16px; font-size: 13px; color: rgba(255,255,255,0.8);
+  gap: 16px; font-size: 13px; color: rgba(255,255,255,0.4);
 }
 .footer-legal { display: flex; gap: 24px; }
-.footer-legal a { color: rgba(255,255,255,0.8); }
+.footer-legal a { color: rgba(255,255,255,0.4); }
 #scroll-top {
   position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px;
   background: var(--gold); color: white; border: none; border-radius: 50%;
@@ -317,7 +315,7 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
     margin: 0 auto;
   }
   .hero-title { font-size: 32px; margin-bottom: 12px; }
-  .hero-desc { font-size: 16px; margin-bottom: 20px; max-width: none; }
+  .hero-desc { font-size: 15px; margin-bottom: 20px; max-width: none; }
   .hero-btns { flex-direction: column; gap: 12px; margin-bottom: 30px; }
   .hero-btns .btn { width: 100%; justify-content: center; }
   .hero-trust {
