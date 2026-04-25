@@ -22,9 +22,9 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   <meta property="og:title" content={title} />
   {description && <meta property="og:description" content={description} />}
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/img/logo.jpg" />
+  <meta property="og:image" content="/img/logo.png" />
   <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" href="/img/logo.jpg" />
+  <link rel="icon" type="image/png" href="/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -32,20 +32,13 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics 4 – chargé uniquement après consentement -->
+  <!-- Google Analytics 4 -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR"></script>
   <script is:inline>
-    function loadGA() {
-      const gaScript = document.createElement('script');
-      gaScript.async = true;
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR';
-      document.head.appendChild(gaScript);
-      gaScript.onload = function() {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-193H6KEEYR');
-      };
-    }
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-193H6KEEYR');
   </script>
 
   <!-- Données structurées LocalBusiness -->
@@ -56,8 +49,8 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
       "name": "DIAGOTOP – Audit & Diagnostic",
       "description": "Expert certifié en diagnostics immobiliers en Île-de-France",
       "url": "https://www.diagotop.fr",
-      "logo": "https://www.diagotop.fr/img/logo.jpg",
-      "image": "https://www.diagotop.fr/img/logo.jpg",
+      "logo": "https://www.diagotop.fr/img/logo.png",
+      "image": "https://www.diagotop.fr/img/logo.png",
       "telephone": "06 99 00 48 75",
       "email": "diagotop.france@outlook.fr",
       "address": {
@@ -80,18 +73,6 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   </script>
 </head>
 <body>
-  <!-- Bandeau de consentement aux cookies -->
-  <div id="cookie-consent" class="cookie-consent">
-    <span>
-      Nous utilisons des cookies pour mesurer l'audience et améliorer nos services. 
-      <a href="/confidentialite">En savoir plus</a>.
-    </span>
-    <div class="cookie-btns">
-      <button id="cookie-accept" class="btn-cookie accept">Accepter</button>
-      <button id="cookie-refuse" class="btn-cookie refuse">Refuser</button>
-    </div>
-  </div>
-
   <Header />
   <main>
     <slot />
@@ -102,7 +83,6 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
 </html>
 
 <script>
-  // Mobile menu
   const burger = document.querySelector('.burger');
   const mobileMenu = document.querySelector('.mobile-menu');
   burger?.addEventListener('click', () => mobileMenu?.classList.toggle('open'));
@@ -123,23 +103,4 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
-
-  // Gestion du consentement cookies
-  const consent = localStorage.getItem('cookieConsent');
-  if (consent === 'accepted') {
-    loadGA();
-  } else if (consent !== 'refused') {
-    document.getElementById('cookie-consent').classList.add('show');
-
-    document.getElementById('cookie-accept').addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'accepted');
-      document.getElementById('cookie-consent').classList.remove('show');
-      loadGA();
-    });
-
-    document.getElementById('cookie-refuse').addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'refused');
-      document.getElementById('cookie-consent').classList.remove('show');
-    });
-  }
 </script>
