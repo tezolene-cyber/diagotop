@@ -144,7 +144,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   justify-content: center;
 }
 
-.dpe-card img { max-width: 240px; height: auto; margin: 0 auto 20px; }
+.dpe-card img { max-width: 260px; height: auto; margin: 0 auto 20px; }
 .dpe-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .dpe-letter { width: 30px; font-weight: 900; font-size: 20px; text-align: right; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
 .dpe-bar {
