@@ -1,50 +1,74 @@
+// Parser combiné Quotidiag + Infodiag (pages d'accueil)
 export async function fetchActualites() {
-    try {
-      const response = await fetch('https://www.rpdi.fr/', {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; Diagotop/1.0)'
-        }
-      });
-      if (!response.ok) throw new Error(`Statut ${response.status}`);
-      const html = await response.text();
-      const doc = new DOMParser().parseFromString(html, 'text/html');
+    const sources = [
+      {
+        name: 'Quotidiag',
+        url: 'https://www.quotidiag.fr/',
+        articleSelector: 'article a, .post-title a, h2 a', // adaptez selon le vrai site
+        dateSelector: 'time, .post-date',
+        linkPrefix: 'https://www.quotidiag.fr'
+      },
+      {
+        name: 'Infodiag',
+        url: 'https://infodiag.fr/',
+        articleSelector: 'article a, .entry-title a, h2 a',
+        dateSelector: 'time, .post-date',
+        linkPrefix: 'https://infodiag.fr'
+      }
+    ];
   
-      // Cherche tous les liens contenant "/article/"
-      const articleLinks = doc.querySelectorAll('a[href*="/article/"]');
-      const articles = [];
+    let allArticles = [];
   
-      for (const link of articleLinks) {
-        if (articles.length >= 6) break;
+    for (const source of sources) {
+      try {
+        const response = await fetch(source.url, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Diagotop/1.0)' }
+        });
+        if (!response.ok) continue;
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
   
-        const titre = link.textContent.trim();
-        const url = new URL(link.href, 'https://www.rpdi.fr').href;
+        const links = doc.querySelectorAll(source.articleSelector);
+        for (const link of links) {
+          if (allArticles.length >= 12) break; // on prend 12 pour trier ensuite
   
-        let date = '';
-        const parent = link.closest('div, article, li');
-        if (parent) {
-          const dateEl = parent.querySelector('time, .date, .post-date');
-          if (dateEl) date = dateEl.textContent.trim();
-          if (!date) {
-            const text = parent.textContent;
-            const match = text.match(/(\d{1,2}\s+(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4})/i);
-            if (match) date = match[1];
+          const titre = link.textContent.trim();
+          let url = link.getAttribute('href');
+          if (!url || !titre) continue;
+          // rendre l'URL absolue
+          if (url.startsWith('/')) url = source.linkPrefix + url;
+          else if (!url.startsWith('http')) url = source.linkPrefix + '/' + url;
+  
+          // Chercher la date à proximité
+          let date = '';
+          const parent = link.closest('article, div, li');
+          if (parent) {
+            const dateEl = parent.querySelector(source.dateSelector);
+            if (dateEl) date = dateEl.textContent.trim();
+            if (!date) {
+              const text = parent.textContent;
+              const match = text.match(/(\d{1,2}\s+(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4})/i);
+              if (match) date = match[1];
+            }
           }
+  
+          allArticles.push({ titre, url, date, source: source.name });
         }
-  
-        let source = 'RPDI';
-        if (url.includes('quotidiag.fr')) source = 'Quotidiag';
-        else if (url.includes('infodiag.fr')) source = 'Infodiag';
-  
-        articles.push({ titre, url, date, source });
+      } catch (e) {
+        console.error(`Erreur scraping ${source.name}:`, e.message);
       }
-  
-      if (articles.length === 0) {
-        console.warn('Aucun article trouvé sur RPDI, utilisation du fallback.');
-        return null;
-      }
-      return articles;
-    } catch (error) {
-      console.error('Erreur parsing RPDI:', error.message);
-      return null;
     }
+  
+    // Déduplication et tri par date (du plus récent au plus ancien)
+    const unique = [];
+    const urls = new Set();
+    for (const art of allArticles) {
+      if (!urls.has(art.url)) {
+        urls.add(art.url);
+        unique.push(art);
+      }
+    }
+    unique.sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+    return unique.slice(0, 6);
   }
