@@ -1,95 +1,84 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import articles from '../data/selected-articles.json';
+import { fetchActualites } from '../lib/rpdi-parser.js';
+import fallbackArticles from '../data/selected-articles.json';
+
+let articles = await fetchActualites();
+if (!articles) {
+  articles = fallbackArticles;
+}
 ---
 
-<BaseLayout
-  title="Actualités du Diagnostic Immobilier | DIAGOTOP"
-  description="Les articles sélectionnés par DIAGOTOP pour suivre l'actualité réglementaire et technique du diagnostic immobilier."
->
-  <section class="section" style="padding-top: 140px;">
-    <div class="container">
-      <h1>📰 Actualités du Diagnostic Immobilier</h1>
-      <p class="section-sub">Les articles sélectionnés par notre équipe pour vous informer</p>
+<BaseLayout title="Actualités du diagnostic immobilier – DIAGOTOP">
+  <div class="container" style="padding: 120px 24px 60px;">
+    <h1>Actualités du diagnostic immobilier</h1>
+    <p class="section-sub">Les dernières informations de la profession, sélectionnées pour vous.</p>
 
-      <div class="news-grid">
-        {articles.map((article) => (
-          <article class="news-card">
-            <div class="news-meta">
-              <span class="news-source">{article.source}</span>
-              <time datetime={article.pubDate}>
-                {new Date(article.pubDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
-              </time>
-            </div>
-            <h2 class="news-title">
-              <a href={article.link} target="_blank" rel="noopener noreferrer">
-                {article.title}
-              </a>
+    <div class="actualites-grid">
+      {articles.map((article, i) => (
+        <article class="actualite-card">
+          <div class="actualite-content">
+            <div class="actualite-source">{article.source}</div>
+            <h2 class="actualite-title">
+              <a href={article.url} target="_blank" rel="noopener">{article.titre}</a>
             </h2>
-            <p class="news-desc">{article.description?.slice(0, 300)}...</p>
-            <a href={article.link} class="btn btn-outline" style="margin-top:16px;" target="_blank" rel="noopener noreferrer">
-              Lire l'article complet →
-            </a>
-          </article>
-        ))}
-      </div>
+            {article.date && <time class="actualite-date">{article.date}</time>}
+          </div>
+        </article>
+      ))}
     </div>
-  </section>
+
+    <p style="margin-top: 32px; font-size: 14px; color: var(--muted);">
+      Source : <a href="https://www.rpdi.fr" target="_blank" rel="noopener">RPDI.fr</a> – Les actualités sont chargées automatiquement lors de chaque mise à jour du site.
+    </p>
+  </div>
 </BaseLayout>
 
 <style>
-  .news-grid {
+  .actualites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
+    margin-top: 32px;
   }
-  .news-card {
+  .actualite-card {
     background: white;
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 24px;
     border: 1px solid var(--border);
     transition: all 0.2s;
   }
-  .news-card:hover {
+  .actualite-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow);
   }
-  .news-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    color: var(--muted);
+  .actualite-source {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 20px;
     margin-bottom: 12px;
   }
-  .news-source {
-    background: rgba(245,166,35,0.12);
-    color: var(--gold);
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-  }
-  .news-title {
+  .actualite-title {
     font-size: 18px;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     line-height: 1.3;
   }
-  .news-title a {
+  .actualite-title a {
     color: var(--black);
     text-decoration: none;
   }
-  .news-title a:hover {
+  .actualite-title a:hover {
     color: var(--gold);
   }
-  .news-desc {
-    font-size: 14px;
+  .actualite-date {
+    font-size: 13px;
     color: var(--muted);
-    line-height: 1.5;
-  }
-  @media (max-width: 768px) {
-    .news-grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
