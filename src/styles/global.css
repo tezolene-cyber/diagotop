@@ -144,9 +144,8 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;           /* centre verticalement au lieu d'étirer */
-  max-width: 1000px;             /* resserre un peu sur grands écrans */
-  margin: 0 auto;                /* centre horizontalement */
+  align-items: center;   /* centre verticalement */
+  min-height: 100vh;     /* prend toute la hauteur de l'écran pour un centrage parfait */
 }
 
 /* Bloc de texte à gauche (fond vitré) */
@@ -160,7 +159,7 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* suppression de height: 100% */
+  height: fit-content;   /* hauteur naturelle, pas d'étirement */
 }
 
 .hero-title { font-size: clamp(42px, 6vw, 64px); font-weight: 900; line-height: 1.1; color: var(--black); margin-bottom: 24px; }
@@ -186,7 +185,9 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   justify-content: center;
   position: relative;   /* correctif Chrome */
   z-index: 1;           /* correctif Chrome */
-  /* suppression de height: 100% */
+  height: fit-content;  /* hauteur naturelle, pas d'étirement */
+  max-width: 400px;     /* pour éviter qu'elle ne devienne trop large */
+  margin: 0 auto;
 }
 
 .dpe-card img { max-width: 300px; height: auto; margin: 0 auto 20px; }
