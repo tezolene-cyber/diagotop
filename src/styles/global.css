@@ -185,9 +185,7 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   justify-content: center;
   position: relative;   /* correctif Chrome */
   z-index: 1;           /* correctif Chrome */
-  height: fit-content;  /* hauteur naturelle, pas d'étirement */
-  max-width: 400px;     /* pour éviter qu'elle ne devienne trop large */
-  margin: 0 auto;
+  height: fit-content;  /* hauteur naturelle */
 }
 
 .dpe-card img { max-width: 300px; height: auto; margin: 0 auto 20px; }
