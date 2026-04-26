@@ -4,7 +4,6 @@ import { fetchActualites } from '../lib/rpdi-parser.js';
 import fallbackArticles from '../data/selected-articles.json';
 
 let articles = await fetchActualites();
-// Si le fetch échoue ou ne renvoie rien, on utilise le fallback
 if (!articles || articles.length === 0) {
   articles = fallbackArticles;
 }
@@ -33,6 +32,21 @@ if (!articles || articles.length === 0) {
       Source : <a href="https://www.rpdi.fr" target="_blank" rel="noopener">RPDI.fr</a> – Les actualités sont chargées automatiquement lors de chaque mise à jour du site.
     </p>
   </div>
+
+  <!-- Données structurées pour les articles (Google Actualités) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": articles.map(a => ({
+      "@type": "Article",
+      "headline": a.titre,
+      "url": a.url,
+      "datePublished": a.date,
+      "sourceOrganization": {
+        "@type": "Organization",
+        "name": a.source
+      }
+    }))
+  })} />
 </BaseLayout>
 
 <style>
