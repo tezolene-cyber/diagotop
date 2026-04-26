@@ -18,12 +18,12 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.5; font-weight: 400; }
 
-/* Liens dans le contenu */
-a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a) {
+/* Liens dans le contenu — exclut bien le logo (.nav-brand) */
+a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a):not(.nav-brand) {
   color: var(--gold-dark);
   text-decoration: underline;
 }
-a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a):hover {
+a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a):not(.nav-brand):hover {
   color: var(--gold);
 }
 
