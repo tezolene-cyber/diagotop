@@ -3,43 +3,45 @@
 <section id="certifications" class="section section-alt">
   <div class="container">
     <div class="text-center">
-      <div class="tag anim">🏅 Certifications</div>
+      <div class="tag anim">
+        <span aria-hidden="true">🏅</span> Certifications
+      </div>
       <h2 class="anim">Experts certifiés & agréés</h2>
       <p class="section-sub anim">Professionnels certifiés, disposant de toutes les accréditations nécessaires pour réaliser vos diagnostics immobiliers en toute conformité.</p>
     </div>
 
-    <div class="certif-grid">
-      <div class="certif-card anim">
-        <div class="certif-icon">📋</div>
+    <ul class="certif-grid anim" aria-label="Liste des certifications">
+      <li class="certif-card">
+        <div class="certif-icon" aria-label="Diagnostic DPE"><span aria-hidden="true">📋</span></div>
         <h3>Certification DPE</h3>
         <p>Diagnostiqueurs certifiés pour le Diagnostic de Performance Énergétique, avec et sans mention.</p>
-      </div>
-      <div class="certif-card anim">
-        <div class="certif-icon">🛡️</div>
+      </li>
+      <li class="certif-card">
+        <div class="certif-icon" aria-label="Diagnostic Amiante"><span aria-hidden="true">🛡️</span></div>
         <h3>Certification Amiante</h3>
         <p>Certification pour le repérage des matériaux contenant de l'amiante (avec et sans mention).</p>
-      </div>
-      <div class="certif-card anim">
-        <div class="certif-icon">⚡</div>
+      </li>
+      <li class="certif-card">
+        <div class="certif-icon" aria-label="Diagnostics Électricité et Gaz"><span aria-hidden="true">⚡</span></div>
         <h3>Électricité & Gaz</h3>
         <p>Certifié pour les diagnostics des installations intérieures d'électricité et de gaz.</p>
-      </div>
-      <div class="certif-card anim">
-        <div class="certif-icon">🔧</div>
+      </li>
+      <li class="certif-card">
+        <div class="certif-icon" aria-label="Assurance RCP"><span aria-hidden="true">🔧</span></div>
         <h3>Assurance RCP</h3>
         <p>Couvert par une assurance Responsabilité Civile Professionnelle pour tous nos diagnostics.</p>
-      </div>
-    </div>
+      </li>
+    </ul>
 
-    <!-- Optionnel : Logos des organismes certificateurs -->
+    <!-- Organismes certificateurs -->
     <div class="certif-logos anim">
       <span>Organismes :</span>
-      <div class="logos">
-        <span>LCP</span>
-        <span>COFRAC</span>
-        <span>KLARITY</span>
-        <span>MINISTERE DE LA VILLE</span>
-      </div>
+      <ul class="logos" aria-label="Organismes certificateurs partenaires" style="list-style: none; padding: 0; margin: 0;">
+        <li>LCP</li>
+        <li>COFRAC</li>
+        <li>KLARITY</li>
+        <li>MINISTÈRE DE LA VILLE</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -98,7 +100,7 @@
     gap: 32px;
     margin-top: 20px;
   }
-  .logos span {
+  .logos li {
     font-weight: 700;
     color: var(--black);
     font-size: 16px;

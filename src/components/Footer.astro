@@ -2,7 +2,7 @@
 import { VILLES_DESSERVIES } from '../config/villes';
 const principalesVilles = VILLES_DESSERVIES.slice(0, 5);
 ---
-<footer>
+<footer aria-label="Pied de page">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -11,7 +11,8 @@ const principalesVilles = VILLES_DESSERVIES.slice(0, 5);
         <div style="color:var(--gold);font-size:11px;letter-spacing:2px;margin-bottom:16px;">Audit & Diagnostic</div>
         <p>Experts Certifiés en diagnostics immobiliers, intervenant dans toute l'Île-de-France.</p>
       </div>
-      <div class="footer-col">
+
+      <nav aria-label="Menu Diagnostics" class="footer-col">
         <div class="footer-col-title">Diagnostics</div>
         <a href="/#diagnostics">DPE</a>
         <a href="/#diagnostics">Amiante</a>
@@ -19,30 +20,33 @@ const principalesVilles = VILLES_DESSERVIES.slice(0, 5);
         <a href="/#diagnostics">Électricité</a>
         <a href="/#diagnostics">Gaz</a>
         <a href="/#diagnostics">Loi Carrez</a>
-      </div>
-      <div class="footer-col">
+      </nav>
+
+      <nav aria-label="Menu Informations" class="footer-col">
         <div class="footer-col-title">Informations</div>
         <a href="/#process">Notre méthode</a>
         <a href="/#pricing">Tarifs</a>
         <a href="/#testimonials">Avis clients</a>
         <a href="/#contact">Contact</a>
-      </div>
+      </nav>
+
       <div class="footer-col">
         <div class="footer-col-title">Contact</div>
-        <span>06 99 00 48 75</span>
-        <span>diagotop.france@outlook.fr</span>
-        <span>64 Rue Francis de Pressensé, 95870 Bezons</span>
-        <span>SIRET : 953 738 655 00018</span>
-        <span>Lun–Sam · 8h–19h</span>
+        <span style="color: rgba(255,255,255,0.8);">06 99 00 48 75</span>
+        <span style="color: rgba(255,255,255,0.8);">diagotop.france@outlook.fr</span>
+        <span style="color: rgba(255,255,255,0.8);">64 Rue Francis de Pressensé, 95870 Bezons</span>
+        <span style="color: rgba(255,255,255,0.8);">SIRET : 953 738 655 00018</span>
+        <span style="color: rgba(255,255,255,0.8);">Lun–Sam · 8h–19h</span>
       </div>
-      <div class="footer-col">
+
+      <nav aria-label="Zones d'intervention principales" class="footer-col">
         <div class="footer-col-title">Zones d'intervention</div>
         {principalesVilles.map(v => {
           const nom = v.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ');
           return <a href={`/zone-intervention/${v}`}>{nom}</a>;
         })}
         <a href="/zones-intervention" style="font-weight:700; color: var(--gold);">Toutes les villes →</a>
-      </div>
+      </nav>
     </div>
     <div class="footer-bottom">
       <span>© 2023 DIAGOTOP – Audit & Diagnostic. Tous droits réservés.</span>

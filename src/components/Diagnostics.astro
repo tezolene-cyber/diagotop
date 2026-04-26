@@ -1,32 +1,35 @@
 ---
 const diagnostics = [
-  { icon: '⚡', title: 'DPE', sub: 'Performance Énergétique', validity: 'Validité : 10 ans', price: 'Dès 90 €' },
-  { icon: '🛡️', title: 'Amiante', sub: 'Diagnostic Amiante', validity: 'Avant 1997 · 3 ans si positif', price: 'Dès 90 €' },
-  { icon: '⚠️', title: 'Plomb', sub: 'CREP', validity: 'Avant 1949 · 1 an si positif', price: 'Dès 90 €' },
-  { icon: '🐛', title: 'Termites', sub: 'État parasitaire', validity: 'Validité : 6 mois', price: 'Dès 90 €' },
-  { icon: '🔌', title: 'Électricité', sub: 'Diagnostic électrique', validity: '+15 ans · 3 ans', price: 'Dès 90 €' },
-  { icon: '🔥', title: 'Gaz', sub: 'Diagnostic gaz', validity: '+15 ans · 3 ans', price: 'Dès 90 €' },
-  { icon: '📐', title: 'Loi Carrez', sub: 'Mesurage privatif', validity: 'Copropriété · permanente', price: 'Dès 90 €' },
-  { icon: '🏠', title: 'Audit énergétique ', sub: 'Obligatoire', validity: 'Validité : 5 ans', price: 'Dès 800 €' }
+  { icon: '⚡', title: 'DPE', sub: 'Performance Énergétique', validity: 'Validité : 10 ans', price: 'Dès 90 €', iconLabel: 'Énergie' },
+  { icon: '🛡️', title: 'Amiante', sub: 'Diagnostic Amiante', validity: 'Avant 1997 · 3 ans si positif', price: 'Dès 90 €', iconLabel: 'Protection amiante' },
+  { icon: '⚠️', title: 'Plomb', sub: 'CREP', validity: 'Avant 1949 · 1 an si positif', price: 'Dès 90 €', iconLabel: 'Danger plomb' },
+  { icon: '🐛', title: 'Termites', sub: 'État parasitaire', validity: 'Validité : 6 mois', price: 'Dès 90 €', iconLabel: 'Parasites' },
+  { icon: '🔌', title: 'Électricité', sub: 'Diagnostic électrique', validity: '+15 ans · 3 ans', price: 'Dès 90 €', iconLabel: 'Électricité' },
+  { icon: '🔥', title: 'Gaz', sub: 'Diagnostic gaz', validity: '+15 ans · 3 ans', price: 'Dès 90 €', iconLabel: 'Gaz' },
+  { icon: '📐', title: 'Loi Carrez', sub: 'Mesurage privatif', validity: 'Copropriété · permanente', price: 'Dès 90 €', iconLabel: 'Mesurage' },
+  { icon: '🏠', title: 'Audit énergétique', sub: 'Obligatoire', validity: 'Validité : 5 ans', price: 'Dès 800 €', iconLabel: 'Audit' }
 ];
 ---
 <section id="diagnostics" class="section">
   <div class="container">
     <div class="text-center">
-      <div class="tag anim">📋 Nos Prestations</div>
+      <div class="tag anim" aria-hidden="true">📋</div>
+      <div class="tag anim">Nos Prestations</div>
       <h2 class="anim">Diagnostics Obligatoires</h2>
       <p class="section-sub anim">Tous les diagnostics réglementaires réalisés par un expert certifié pour vos ventes, locations et travaux.</p>
     </div>
-    <div class="diag-grid">
+    <ul class="diag-grid" aria-label="Liste des diagnostics proposés">
       {diagnostics.map((d) => (
-        <div class="diag-card anim">
-          <div class="diag-icon">{d.icon}</div>
-          <div class="diag-title">{d.title}</div>
+        <li class="diag-card anim">
+          <div class="diag-icon" aria-label={d.iconLabel} role="img">
+            <span aria-hidden="true">{d.icon}</span>
+          </div>
+          <h3 class="diag-title">{d.title}</h3>
           <div class="diag-sub">{d.sub}</div>
           <div class="diag-validity">{d.validity}</div>
           <div class="diag-price">{d.price}</div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>

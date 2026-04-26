@@ -8,25 +8,38 @@ const plans = [
 <section id="pricing" class="section">
   <div class="container">
     <div class="text-center">
-      <div class="tag anim">💶 Tarifs</div>
+      <div class="tag anim">
+        <span aria-hidden="true">💶</span> Tarifs
+      </div>
       <h2 class="anim">Des prix transparents</h2>
       <p class="section-sub anim">Devis personnalisé gratuit selon votre bien et les diagnostics requis.</p>
     </div>
-    <div class="pricing-grid">
+    <ul class="pricing-grid" aria-label="Nos offres">
       {plans.map((plan) => (
-        <div class={`pricing-card anim ${plan.popular ? 'popular' : ''}`}>
-          {plan.popular && <div class="popular-badge">⭐ Le Plus Choisi</div>}
+        <li class={`pricing-card anim ${plan.popular ? 'popular' : ''}`}>
+          {plan.popular && (
+            <div class="popular-badge">
+              <span aria-hidden="true">⭐</span> Le Plus Choisi
+            </div>
+          )}
           <div class="pricing-name" style={plan.popular ? 'color:white;' : ''}>{plan.name}</div>
           <div class="pricing-price" style={plan.popular ? 'color:var(--gold);' : ''}>{plan.price}</div>
           <div style={`margin-bottom:16px; ${plan.popular ? 'color:rgba(255,255,255,0.7);' : 'color:var(--muted);'}`}>{plan.subtitle}</div>
-          <div class="pricing-features">
-            {plan.features.map(f => <div class="pricing-feat">✓ {f}</div>)}
-          </div>
-          <a href="#contact" class={plan.popular ? 'btn btn-primary' : 'btn btn-dark'} style="width:100%;">
+          <ul class="pricing-features" aria-label={`Avantages de l'offre ${plan.name}`}>
+            {plan.features.map(f => (
+              <li class="pricing-feat"><span aria-hidden="true">✓</span> {f}</li>
+            ))}
+          </ul>
+          <a
+            href="#contact"
+            class={plan.popular ? 'btn btn-primary' : 'btn btn-dark'}
+            style="width:100%;"
+            aria-label={plan.popular ? `Choisir le ${plan.name}` : `Demander un devis pour ${plan.name}`}
+          >
             {plan.popular ? 'Choisir ce pack' : 'Obtenir un devis'}
           </a>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>

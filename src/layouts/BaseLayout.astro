@@ -92,19 +92,29 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   </script>
 </head>
 <body>
+  <!-- Lien d'évitement pour l'accessibilité -->
+  <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+
   <Header />
-  <main>
+  <main id="main-content">
     <slot />
   </main>
   <Footer />
-  <button id="scroll-top">↑</button>
+  <button id="scroll-top" aria-label="Retour en haut de la page">
+    <span aria-hidden="true">↑</span>
+  </button>
 </body>
 </html>
 
 <script>
-  const burger = document.querySelector('.burger');
+    const burger = document.querySelector('.burger');
   const mobileMenu = document.querySelector('.mobile-menu');
-  burger?.addEventListener('click', () => mobileMenu?.classList.toggle('open'));
+  if (burger && mobileMenu) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen);
+    });
+  }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });

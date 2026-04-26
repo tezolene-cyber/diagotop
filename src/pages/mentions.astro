@@ -3,21 +3,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Mentions légales - DIAGOTOP">
   <div class="container" style="padding: 120px 24px 60px;">
-    <h1>Mentions légales</h1>
-    <p><strong>Raison sociale :</strong> DIAGOTOP – Audit & Diagnostic<br>
-    <strong>Adresse :</strong> 64 Rue Francis de Pressensé 95870 Bezons<br>
-    <strong>SIRET :</strong> 95373865500018<br>
-    <strong>TVA :</strong> TVA non applicable, article 293B du CGI<br>
-    <strong>Responsable de publication :</strong> Mr Hamdoul Mustapha</p>
+    <nav aria-label="Fil d'ariane" style="margin-bottom: 32px; font-size: 14px; color: var(--muted);">
+      <a href="/">Accueil</a> &rsaquo; <span aria-current="page">Mentions légales</span>
+    </nav>
 
-    <!-- Bloc hébergeur -->
-    <h2 style="margin-top: 32px;">Hébergement</h2>
+    <h1>Mentions légales</h1>
+
+    <p>
+      <strong>Raison sociale :</strong> DIAGOTOP – Audit & Diagnostic<br />
+      <strong>Adresse :</strong> 64 Rue Francis de Pressensé, 95870 Bezons, France<br />
+      <strong>SIRET :</strong> 953 738 655 00018<br />
+      <strong>TVA :</strong> TVA non applicable, article 293B du CGI<br />
+      <strong>Responsable de publication :</strong> Monsieur Hamdoul Mustapha<br />
+      <strong>Contact :</strong> diagotop.france@outlook.fr / 06 99 00 48 75
+    </p>
+
+    <h2 style="margin-top: 40px;">Hébergement</h2>
     <p>
       <strong>Hébergeur :</strong> Vercel Inc.<br />
       <strong>Adresse :</strong> 340 S Lemon Ave #4133, Walnut, CA 91789, USA<br />
       <strong>Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">https://vercel.com</a>
     </p>
-    
-    <p><a href="/">← Retour à l'accueil</a></p>
+
+    <h2 style="margin-top: 40px;">Propriété intellectuelle</h2>
+    <p>
+      L’ensemble du contenu du site diagotop.fr (textes, images, logos, icônes, code source) est la propriété exclusive de DIAGOTOP, sauf mention contraire. Toute reproduction, modification ou diffusion sans autorisation est interdite.
+    </p>
+
+    <h2 style="margin-top: 40px;">Limitation de responsabilité</h2>
+    <p>
+      DIAGOTOP s’efforce de fournir des informations exactes et à jour. Toutefois, l’éditeur ne saurait être tenu responsable des erreurs ou omissions, ni des dommages résultant de l’utilisation des informations présentes sur le site.
+    </p>
+
+    <p style="margin-top: 40px;"><a href="/">← Retour à l'accueil</a></p>
   </div>
 </BaseLayout>

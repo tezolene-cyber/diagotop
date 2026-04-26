@@ -8,24 +8,30 @@ const testimonials = [
 <section id="testimonials" class="section section-alt">
   <div class="container">
     <div class="text-center">
-      <div class="tag anim">⭐ Avis Clients</div>
+      <div class="tag anim">
+        <span aria-hidden="true">⭐</span> Avis Clients
+      </div>
       <h2 class="anim">Ils nous font confiance</h2>
       <p class="section-sub anim">Plus de 500 clients satisfaits en Île-de-France.</p>
     </div>
-    <div class="testi-grid">
+    <ul class="testi-grid" aria-label="Avis de nos clients">
       {testimonials.map((t) => (
-        <div class="testi-card anim">
-          <div class="testi-stars">{t.stars}</div>
+        <li class="testi-card anim">
+          <div class="testi-stars" aria-label="5 étoiles sur 5" role="img">
+            <span aria-hidden="true">{t.stars}</span>
+          </div>
           <p class="testi-text">{t.text}</p>
           <div class="testi-author">
-            <div class="testi-avatar" style={t.bg ? `background:${t.bg};color:black;` : ''}>{t.avatar}</div>
+            <div class="testi-avatar" style={t.bg ? `background:${t.bg};color:black;` : ''}>
+              <span aria-hidden="true">{t.avatar}</span>
+            </div>
             <div>
               <div class="testi-name">{t.name}</div>
               <div class="testi-role">{t.role}</div>
             </div>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>

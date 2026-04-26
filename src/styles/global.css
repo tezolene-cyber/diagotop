@@ -1,12 +1,14 @@
 :root {
   --black: #1A1A1A;
   --gold: #F5A623;
+  --gold-dark: #D88C00;   /* pour les liens sur fond blanc */
+  --navy: #1A2B4C;         /* bleu marine pour badge */
   --green: #5DB761;
   --lime: #C8D400;
   --bg: #F6F5F2;
   --white: #FFFFFF;
   --text: #3D3D3D;
-  --muted: #5A5A5A;
+  --muted: #374151;        /* contraste amélioré */
   --border: rgba(0,0,0,0.07);
   --shadow: 0 20px 60px rgba(0,0,0,0.08);
   --radius: 18px;
@@ -14,19 +16,45 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.5; }
-a { text-decoration: none; color: inherit; }
+body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.5; font-weight: 400; }
+
+/* Liens dans le contenu */
+a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a) {
+  color: var(--gold-dark);
+  text-decoration: underline;
+}
+a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a):hover {
+  color: var(--gold);
+}
+
 ul { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section { padding: 80px 0; }
 .section-alt { background: var(--bg); }
 
-/* Badge « Certifiés par l’État » en blanc sur fond orange */
+/* Lien d'évitement (skip link) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--navy);
+  color: white;
+  padding: 12px 24px;
+  z-index: 10000;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Badge « Certifiés par l’État » – version accessible */
 .tag {
   display: inline-block;
-  background: var(--gold);
-  color: white;
+  background: var(--navy);
+  color: var(--gold);
   padding: 6px 16px;
   border-radius: 30px;
   font-size: 10px;
@@ -35,9 +63,11 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.5px;
   margin-bottom: 16px;
   align-self: flex-start;
+  border: 1px solid var(--gold);
 }
 
 h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); line-height: 1.2; margin-bottom: 16px; }
+h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
 .section-sub { font-size: 18px; color: var(--muted); max-width: 600px; margin-bottom: 48px; }
 .text-center { text-align: center; }
 .text-center .section-sub { margin-left: auto; margin-right: auto; }
@@ -51,12 +81,19 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   transition: all 0.2s; border: none; cursor: pointer;
 }
 .btn-primary { background: var(--gold); color: white; box-shadow: 0 8px 20px rgba(245,166,35,0.3); }
-.btn-primary:hover { background: #e8950f; transform: translateY(-2px); }
+.btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
 .btn-outline { background: transparent; color: var(--black); border: 2px solid var(--black); }
 .btn-outline:hover { background: var(--black); color: white; }
 .btn-dark { background: var(--black); color: white; }
 .btn-dark:hover { opacity: 0.9; }
 .btn-gold-outline { background: transparent; color: var(--gold); border: 2px solid var(--gold); }
+
+/* Focus visible pour tous les éléments interactifs */
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
 #nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
@@ -69,7 +106,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 .brand-name { font-size: 20px; font-weight: 900; color: var(--black); }
 .brand-sub { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
 .nav-links { display: flex; gap: 32px; }
-.nav-links a { font-weight: 500; color: #444; }
+.nav-links a { font-weight: 500; color: #1A1A1A; }   /* plus sombre que #444 */
 .nav-links a:hover { color: var(--gold); }
 .nav-cta { margin-left: 16px; }
 .burger { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
@@ -129,13 +166,14 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
 .trust-check { color: var(--green); font-weight: bold; }
 
 /* ===== CARTE DPE VITRÉE ===== */
+.dpe-list { list-style: none; padding: 0; margin: 0; }
 .dpe-card {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
   padding: 20px 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  box-shadow: none;   /* suppression ombre résiduelle */
   border: 1px solid rgba(255,255,255,0.3);
   text-align: center;
   height: 100%;
@@ -152,6 +190,7 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   font-size: 20px;
   text-align: right;
   color: #ffffff;
+  text-shadow: none;   /* suppression ombre sur lettres */
 }
 .dpe-bar {
   height: 38px;
@@ -163,9 +202,10 @@ h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 900; color: var(--black); l
   color: white;
   font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: none;   /* ombre portée enlevée */
+  transition: filter 0.3s ease;
 }
-.dpe-card:hover .dpe-bar { filter: brightness(1.1); transition: filter 0.3s ease; }
+.dpe-card:hover .dpe-bar { filter: brightness(1.1); }
 
 /* Grilles etc. */
 .diag-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
@@ -286,7 +326,7 @@ footer { background: var(--black); color: white; padding: 60px 0 30px; }
   padding: 8px 20px; border-radius: 30px; font-weight: 600; cursor: pointer; border: none; font-size: 14px;
 }
 .btn-cookie.accept { background: var(--gold); color: white; }
-.btn-cookie.accept:hover { background: #e8950f; }
+.btn-cookie.accept:hover { background: var(--gold-dark); }
 .btn-cookie.refuse { background: transparent; color: white; border: 1px solid white; }
 .btn-cookie.refuse:hover { background: white; color: var(--black); }
 
