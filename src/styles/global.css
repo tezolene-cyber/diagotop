@@ -171,9 +171,8 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
 /* ===== CARTE DPE VITRÉE ===== */
 .dpe-list { list-style: none; padding: 0; margin: 0; }
 .dpe-card {
-  background: rgba(255, 255, 255, 0.35);   /* légèrement plus opaque pour Chrome/Windows */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1;
   border-radius: 24px;
   padding: 20px 30px;
   box-shadow: none;
@@ -182,10 +181,23 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  z-index: 1;
-  height: 100%;                /* même hauteur que la colonne */
-  transform: translateZ(0);    /* force l'accélération GPU – corrige Chrome/Windows */
+  height: 100%;
+  /* fond de secours légèrement opaque */
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Le flou est déporté sur un pseudo‑élément pour contourner le bug Chrome/Windows */
+.dpe-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  /* accélération GPU */
+  transform: translateZ(0);
   will-change: transform;
 }
 
