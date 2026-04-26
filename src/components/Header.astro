@@ -1,6 +1,6 @@
 ---
 ---
-<nav id="nav">
+<nav id="nav" aria-label="Navigation principale">
   <div class="container">
     <div class="nav-inner">
       <a href="/" class="nav-brand">
@@ -19,10 +19,12 @@
         <a href="/#contact">Contact</a>
       </div>
       <a href="/#contact" class="btn btn-primary nav-cta">Devis Gratuit</a>
-      <button class="burger">☰</button>
+      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span aria-hidden="true">☰</span>
+      </button>
     </div>
   </div>
-  <div class="mobile-menu">
+  <div id="mobile-menu" class="mobile-menu" aria-label="Menu mobile">
     <a href="/#diagnostics">Diagnostics</a>
     <a href="/#process">Méthode</a>
     <a href="/#pricing">Tarifs</a>

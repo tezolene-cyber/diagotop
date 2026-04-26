@@ -18,6 +18,9 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--font); color: var(--text); background: var(--white); line-height: 1.5; font-weight: 400; }
 
+/* Tous les liens : pas de soulignement, héritent de la couleur du parent */
+a { text-decoration: none; color: inherit; }
+
 /* Liens dans le contenu — exclut bien le logo (.nav-brand) */
 a:not(.btn):not(.nav-links a):not(.footer-col a):not(.cookie-consent a):not(.nav-brand) {
   color: var(--gold-dark);
@@ -141,7 +144,9 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: stretch;
+  align-items: center;           /* centre verticalement au lieu d'étirer */
+  max-width: 1000px;             /* resserre un peu sur grands écrans */
+  margin: 0 auto;                /* centre horizontalement */
 }
 
 /* Bloc de texte à gauche (fond vitré) */
@@ -152,10 +157,10 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   border-radius: 24px;
   padding: 30px 40px;
   border: 1px solid rgba(255,255,255,0.3);
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* suppression de height: 100% */
 }
 
 .hero-title { font-size: clamp(42px, 6vw, 64px); font-weight: 900; line-height: 1.1; color: var(--black); margin-bottom: 24px; }
@@ -173,13 +178,15 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
   padding: 20px 30px;
-  box-shadow: none;   /* suppression ombre résiduelle */
+  box-shadow: none;
   border: 1px solid rgba(255,255,255,0.3);
   text-align: center;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;   /* correctif Chrome */
+  z-index: 1;           /* correctif Chrome */
+  /* suppression de height: 100% */
 }
 
 .dpe-card img { max-width: 300px; height: auto; margin: 0 auto 20px; }
