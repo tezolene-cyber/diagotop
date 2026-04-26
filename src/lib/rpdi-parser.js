@@ -1,7 +1,10 @@
-// Parse la page d'accueil de RPDI.fr pour extraire les 6 derniers articles
 export async function fetchActualites() {
     try {
-      const response = await fetch('https://www.rpdi.fr/');
+      const response = await fetch('https://www.rpdi.fr/', {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; Diagotop/1.0)'
+        }
+      });
       if (!response.ok) throw new Error(`Statut ${response.status}`);
       const html = await response.text();
       const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -16,7 +19,6 @@ export async function fetchActualites() {
         const titre = link.textContent.trim();
         const url = new URL(link.href, 'https://www.rpdi.fr').href;
   
-        // Essayer de récupérer la date
         let date = '';
         const parent = link.closest('div, article, li');
         if (parent) {
@@ -29,7 +31,6 @@ export async function fetchActualites() {
           }
         }
   
-        // Source selon le domaine
         let source = 'RPDI';
         if (url.includes('quotidiag.fr')) source = 'Quotidiag';
         else if (url.includes('infodiag.fr')) source = 'Infodiag';
@@ -37,10 +38,13 @@ export async function fetchActualites() {
         articles.push({ titre, url, date, source });
       }
   
-      if (articles.length === 0) throw new Error('Aucun article extrait');
+      if (articles.length === 0) {
+        console.warn('Aucun article trouvé sur RPDI, utilisation du fallback.');
+        return null;
+      }
       return articles;
     } catch (error) {
-      console.error('Erreur parsing RPDI:', error);
-      return null; // déclenchera le fallback
+      console.error('Erreur parsing RPDI:', error.message);
+      return null;
     }
   }
