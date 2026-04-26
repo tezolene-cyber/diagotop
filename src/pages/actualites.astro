@@ -4,7 +4,8 @@ import { fetchActualites } from '../lib/rpdi-parser.js';
 import fallbackArticles from '../data/selected-articles.json';
 
 let articles = await fetchActualites();
-if (!articles) {
+// Si le fetch échoue ou ne renvoie rien, on utilise le fallback
+if (!articles || articles.length === 0) {
   articles = fallbackArticles;
 }
 ---

@@ -81,7 +81,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
         "addressCountry": "FR"
       },
       "areaServed": {
-        "@type": "Region",
+        "@type": "AdministrativeArea",
         "name": "Île-de-France"
       },
       "priceRange": "€€",
@@ -107,7 +107,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
 </html>
 
 <script>
-    const burger = document.querySelector('.burger');
+  const burger = document.querySelector('.burger');
   const mobileMenu = document.querySelector('.mobile-menu');
   if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
