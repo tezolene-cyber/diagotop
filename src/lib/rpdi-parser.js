@@ -25,12 +25,12 @@ export async function fetchActualites() {
       const xml = await response.text();
 
       // Découper le flux en segments <item>...</item>
-      const itemBlocks = xml.split(/<item[^>]*>/i).slice(1); // ignore le premier bloc avant <item>
+      const itemBlocks = xml.split(/<item[^>]*>/i).slice(1);
       let count = 0;
 
       for (const block of itemBlocks) {
         if (allArticles.length >= 12) break;
-        const itemContent = block.split('</item>')[0]; // garde le contenu jusqu'à </item>
+        const itemContent = block.split('</item>')[0];
 
         // Extraction du titre (gère CDATA)
         const titleMatch = itemContent.match(/<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/title>/i);
@@ -75,21 +75,30 @@ export async function fetchActualites() {
   // Trier tous les articles par date décroissante
   unique.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // --- Logique : 3 max par source ---
-  const maxPerSource = 3;
+  // --- Logique : 3 max par source, puis complément si < 6 articles ---
+  const maxPerSourceFirstPass = 3;
   const selected = [];
   const counts = {};
 
+  // Première passe : jusqu'à 3 par source
+  const remaining = [];
   for (const art of unique) {
-    if (selected.length >= 6) break;
     const src = art.source;
     counts[src] = counts[src] || 0;
-    if (counts[src] < maxPerSource) {
+    if (counts[src] < maxPerSourceFirstPass) {
       selected.push(art);
       counts[src]++;
+    } else {
+      remaining.push(art);
     }
   }
-  // -------------------------------------------
+
+  // Si on n'a pas 6 articles, on complète avec les restants
+  if (selected.length < 6) {
+    const needed = 6 - selected.length;
+    selected.push(...remaining.slice(0, needed));
+  }
+  // ------------------------------------------------------------------------
 
   if (selected.length === 0) {
     console.warn('Aucun article extrait, utilisation du fallback');
