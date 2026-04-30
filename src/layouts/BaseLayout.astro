@@ -33,13 +33,21 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics 4 -->
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR"></script>
+    <!-- Google Analytics 4 – chargé après consentement via le bandeau cookies -->
   <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-193H6KEEYR');
+    (function() {
+      var consent = localStorage.getItem('cookieConsent');
+      if (consent === 'accept') {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR';
+        script.async = true;
+        document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-193H6KEEYR');
+      }
+    })();
   </script>
 
   <!-- Données structurées WebSite + LocalBusiness -->
