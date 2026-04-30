@@ -62,7 +62,7 @@ export async function fetchActualites() {
     }
   }
 
-  // Déduplication et tri
+  // Déduplication par URL
   const unique = [];
   const urls = new Set();
   for (const art of allArticles) {
@@ -71,11 +71,29 @@ export async function fetchActualites() {
       unique.push(art);
     }
   }
+
+  // Trier tous les articles par date décroissante
   unique.sort((a, b) => new Date(b.date) - new Date(a.date));
-  const result = unique.slice(0, 6);
-  if (result.length === 0) {
+
+  // --- Logique : 3 max par source ---
+  const maxPerSource = 3;
+  const selected = [];
+  const counts = {};
+
+  for (const art of unique) {
+    if (selected.length >= 6) break;
+    const src = art.source;
+    counts[src] = counts[src] || 0;
+    if (counts[src] < maxPerSource) {
+      selected.push(art);
+      counts[src]++;
+    }
+  }
+  // -------------------------------------------
+
+  if (selected.length === 0) {
     console.warn('Aucun article extrait, utilisation du fallback');
     return null;
   }
-  return result;
+  return selected;
 }
