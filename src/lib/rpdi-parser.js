@@ -1,5 +1,4 @@
-import { parseXML } from 'linkedom';
-
+// Parser de flux RSS natif – utilise DOMParser (Node 18+)
 export async function fetchActualites() {
   const sources = [
     {
@@ -24,9 +23,17 @@ export async function fetchActualites() {
         continue;
       }
       const xmlText = await response.text();
-      const { document } = parseXML(xmlText);
+      
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlText, 'application/xml');
+      
+      // Vérifier si le parsing XML a échoué
+      if (doc.querySelector('parsererror')) {
+        console.error(`Erreur parsing XML pour ${source.name}`);
+        continue;
+      }
 
-      const items = document.querySelectorAll('item');
+      const items = doc.querySelectorAll('item');
       let count = 0;
       for (const item of items) {
         if (allArticles.length >= 12) break;
@@ -42,7 +49,6 @@ export async function fetchActualites() {
         let date = '';
         if (pubDateEl) {
           const rawDate = pubDateEl.textContent.trim();
-          // Convertir la date RFC 2822 en format français
           const d = new Date(rawDate);
           if (!isNaN(d.getTime())) {
             date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
