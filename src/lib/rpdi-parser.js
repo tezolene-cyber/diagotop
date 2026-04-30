@@ -1,21 +1,15 @@
-import { parseHTML } from 'linkedom';
-
-// Parser combiné Quotidiag + Infodiag (sélecteurs vérifiés)
+// Parser basé sur regex pour Quotidiag et Infodiag – version robuste
 export async function fetchActualites() {
   const sources = [
     {
       name: 'Quotidiag',
       url: 'https://www.quotidiag.fr/',
-      containerSelector: 'div.post__text',
-      titleSelector: 'h3.post__title a',
-      dateSelector: 'time.published'
+      articleRegex: /<h3 class="post__title typescale-2"><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>\s*<div class="post__meta">[^<]*<time class="time published" datetime="[^"]*"[^>]*>([^<]+)<\/time>/gi
     },
     {
       name: 'Infodiag',
       url: 'https://infodiag.fr/',
-      containerSelector: 'div.mh-posts-list-content',
-      titleSelector: 'h3.entry-title.mh-posts-list-title a',
-      dateSelector: 'span.entry-meta-date'
+      articleRegex: /<h3 class="entry-title mh-posts-list-title"><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>\s*<div class="mh-meta entry-meta">\s*<span class="entry-meta-date updated">[^<]*<i[^>]*><\/i><a[^>]*>([^<]+)<\/a><\/span>/gi
     }
   ];
 
@@ -31,36 +25,29 @@ export async function fetchActualites() {
         continue;
       }
       const html = await response.text();
-      const { document } = parseHTML(html);
 
-      const containers = document.querySelectorAll(source.containerSelector);
-      console.log(`${source.name}: ${containers.length} articles trouvés`);
-
-      for (const container of containers) {
+      const matches = html.matchAll(source.articleRegex);
+      let count = 0;
+      for (const match of matches) {
         if (allArticles.length >= 12) break;
-
-        const titleEl = container.querySelector(source.titleSelector);
-        if (!titleEl) continue;
-        const titre = titleEl.textContent.trim();
-        const url = titleEl.href;
-        if (!titre || !url) continue;
-
-        let date = '';
-        const dateEl = container.querySelector(source.dateSelector);
-        if (dateEl) {
-          date = dateEl.textContent.trim();
-          const matchDatePropre = date.match(/(\d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4})/i);
-          if (matchDatePropre) date = matchDatePropre[1];
-        }
+        const url = match[1].startsWith('http') ? match[1] : source.url + match[1];
+        const titre = match[2]
+          .replace(/&#8217;|&#039;|&rsquo;|&lsquo;/g, "'")
+          .replace(/&amp;/g, '&')
+          .trim();
+        let date = match[3].trim();
+        const datePropre = date.match(/(\d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4})/i);
+        if (datePropre) date = datePropre[1];
 
         allArticles.push({ titre, url, date, source: source.name });
+        count++;
       }
+      console.log(`${source.name}: ${count} articles extraits`);
     } catch (e) {
       console.error(`Erreur scraping ${source.name}:`, e.message);
     }
   }
 
-  // Déduplication par URL
   const unique = [];
   const urls = new Set();
   for (const art of allArticles) {
@@ -69,7 +56,6 @@ export async function fetchActualites() {
       unique.push(art);
     }
   }
-
   unique.sort((a, b) => new Date(b.date) - new Date(a.date));
   const result = unique.slice(0, 6);
   if (result.length === 0) {
