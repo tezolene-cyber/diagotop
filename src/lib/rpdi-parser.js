@@ -1,15 +1,17 @@
-// Parser basé sur regex pour Quotidiag et Infodiag – version robuste
+// Parser basé sur regex pour Quotidiag et Infodiag – version assouplie
 export async function fetchActualites() {
   const sources = [
     {
       name: 'Quotidiag',
       url: 'https://www.quotidiag.fr/',
-      articleRegex: /<h3 class="post__title typescale-2"><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>\s*<div class="post__meta">[^<]*<time class="time published" datetime="[^"]*"[^>]*>([^<]+)<\/time>/gi
+      // Regex plus souple : capture tout lien dans un h3.post__title, puis la date dans le time.published qui suit
+      articleRegex: /<h3 class="post__title[^>]*><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>[\s\S]*?<time class="[^"]*published[^"]*"[^>]*>([^<]+)<\/time>/gi
     },
     {
       name: 'Infodiag',
       url: 'https://infodiag.fr/',
-      articleRegex: /<h3 class="entry-title mh-posts-list-title"><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>\s*<div class="mh-meta entry-meta">\s*<span class="entry-meta-date updated">[^<]*<i[^>]*><\/i><a[^>]*>([^<]+)<\/a><\/span>/gi
+      // Idem pour Infodiag
+      articleRegex: /<h3 class="entry-title[^>]*><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>[\s\S]*?<span class="entry-meta-date[^"]*"[^>]*>[^<]*<a[^>]*>([^<]+)<\/a><\/span>/gi
     }
   ];
 
@@ -30,7 +32,7 @@ export async function fetchActualites() {
       let count = 0;
       for (const match of matches) {
         if (allArticles.length >= 12) break;
-        const url = match[1].startsWith('http') ? match[1] : source.url + match[1];
+        const url = match[1].startsWith('http') ? match[1] : 'https://' + source.url.split('/')[2] + match[1];
         const titre = match[2]
           .replace(/&#8217;|&#039;|&rsquo;|&lsquo;/g, "'")
           .replace(/&amp;/g, '&')
