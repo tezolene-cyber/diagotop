@@ -1,17 +1,14 @@
-// Parser basé sur regex pour Quotidiag et Infodiag – version assouplie
+import { parseXML } from 'linkedom';
+
 export async function fetchActualites() {
   const sources = [
     {
       name: 'Quotidiag',
-      url: 'https://www.quotidiag.fr/',
-      // Regex plus souple : capture tout lien dans un h3.post__title, puis la date dans le time.published qui suit
-      articleRegex: /<h3 class="post__title[^>]*><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>[\s\S]*?<time class="[^"]*published[^"]*"[^>]*>([^<]+)<\/time>/gi
+      url: 'https://www.quotidiag.fr/feed/'
     },
     {
       name: 'Infodiag',
-      url: 'https://infodiag.fr/',
-      // Idem pour Infodiag
-      articleRegex: /<h3 class="entry-title[^>]*><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/h3>[\s\S]*?<span class="entry-meta-date[^"]*"[^>]*>[^<]*<a[^>]*>([^<]+)<\/a><\/span>/gi
+      url: 'https://infodiag.fr/feed/'
     }
   ];
 
@@ -23,23 +20,34 @@ export async function fetchActualites() {
         headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Diagotop/1.0)' }
       });
       if (!response.ok) {
-        console.error(`Erreur fetch ${source.name}: statut ${response.status}`);
+        console.error(`Erreur fetch RSS ${source.name}: statut ${response.status}`);
         continue;
       }
-      const html = await response.text();
+      const xmlText = await response.text();
+      const { document } = parseXML(xmlText);
 
-      const matches = html.matchAll(source.articleRegex);
+      const items = document.querySelectorAll('item');
       let count = 0;
-      for (const match of matches) {
+      for (const item of items) {
         if (allArticles.length >= 12) break;
-        const url = match[1].startsWith('http') ? match[1] : 'https://' + source.url.split('/')[2] + match[1];
-        const titre = match[2]
-          .replace(/&#8217;|&#039;|&rsquo;|&lsquo;/g, "'")
-          .replace(/&amp;/g, '&')
-          .trim();
-        let date = match[3].trim();
-        const datePropre = date.match(/(\d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+\d{4})/i);
-        if (datePropre) date = datePropre[1];
+
+        const titleEl = item.querySelector('title');
+        const linkEl = item.querySelector('link');
+        const pubDateEl = item.querySelector('pubDate');
+
+        if (!titleEl || !linkEl) continue;
+
+        const titre = titleEl.textContent.trim();
+        const url = linkEl.textContent.trim();
+        let date = '';
+        if (pubDateEl) {
+          const rawDate = pubDateEl.textContent.trim();
+          // Convertir la date RFC 2822 en format français
+          const d = new Date(rawDate);
+          if (!isNaN(d.getTime())) {
+            date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+          }
+        }
 
         allArticles.push({ titre, url, date, source: source.name });
         count++;
@@ -50,6 +58,7 @@ export async function fetchActualites() {
     }
   }
 
+  // Déduplication par URL
   const unique = [];
   const urls = new Set();
   for (const art of allArticles) {
