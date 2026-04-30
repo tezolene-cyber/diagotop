@@ -1,4 +1,4 @@
-// Parser de flux RSS natif – utilise DOMParser (Node 18+)
+// Parser RSS natif par regex – compatible Node 18
 export async function fetchActualites() {
   const sources = [
     {
@@ -22,41 +22,40 @@ export async function fetchActualites() {
         console.error(`Erreur fetch RSS ${source.name}: statut ${response.status}`);
         continue;
       }
-      const xmlText = await response.text();
-      
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(xmlText, 'application/xml');
-      
-      // Vérifier si le parsing XML a échoué
-      if (doc.querySelector('parsererror')) {
-        console.error(`Erreur parsing XML pour ${source.name}`);
-        continue;
-      }
+      const xml = await response.text();
 
-      const items = doc.querySelectorAll('item');
+      // Extraire chaque bloc <item>...</item>
+      const itemRegex = /<item>([\s\S]*?)<\/item>/gi;
+      const items = xml.matchAll(itemRegex);
       let count = 0;
-      for (const item of items) {
+
+      for (const itemMatch of items) {
         if (allArticles.length >= 12) break;
+        const itemContent = itemMatch[1];
 
-        const titleEl = item.querySelector('title');
-        const linkEl = item.querySelector('link');
-        const pubDateEl = item.querySelector('pubDate');
-
-        if (!titleEl || !linkEl) continue;
-
-        const titre = titleEl.textContent.trim();
-        const url = linkEl.textContent.trim();
+        // Extraire le titre
+        const titleMatch = itemContent.match(/<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/title>/i);
+        const titre = titleMatch ? titleMatch[1].trim() : '';
+        
+        // Extraire le lien
+        const linkMatch = itemContent.match(/<link>(.*?)<\/link>/i);
+        const url = linkMatch ? linkMatch[1].trim() : '';
+        
+        // Extraire la date de publication
+        const pubDateMatch = itemContent.match(/<pubDate>(.*?)<\/pubDate>/i);
         let date = '';
-        if (pubDateEl) {
-          const rawDate = pubDateEl.textContent.trim();
+        if (pubDateMatch) {
+          const rawDate = pubDateMatch[1].trim();
           const d = new Date(rawDate);
           if (!isNaN(d.getTime())) {
             date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
           }
         }
 
-        allArticles.push({ titre, url, date, source: source.name });
-        count++;
+        if (titre && url) {
+          allArticles.push({ titre, url, date, source: source.name });
+          count++;
+        }
       }
       console.log(`${source.name}: ${count} articles extraits`);
     } catch (e) {
@@ -64,7 +63,7 @@ export async function fetchActualites() {
     }
   }
 
-  // Déduplication par URL
+  // Déduplication et tri
   const unique = [];
   const urls = new Set();
   for (const art of allArticles) {
