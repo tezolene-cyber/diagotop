@@ -1,4 +1,4 @@
-// Parser RSS natif par regex – compatible Node 18
+// Parser RSS robuste par découpage de chaînes
 export async function fetchActualites() {
   const sources = [
     {
@@ -24,24 +24,23 @@ export async function fetchActualites() {
       }
       const xml = await response.text();
 
-      // Extraire chaque bloc <item>...</item>
-      const itemRegex = /<item>([\s\S]*?)<\/item>/gi;
-      const items = xml.matchAll(itemRegex);
+      // Découper le flux en segments <item>...</item>
+      const itemBlocks = xml.split(/<item[^>]*>/i).slice(1); // ignore le premier bloc avant <item>
       let count = 0;
 
-      for (const itemMatch of items) {
+      for (const block of itemBlocks) {
         if (allArticles.length >= 12) break;
-        const itemContent = itemMatch[1];
+        const itemContent = block.split('</item>')[0]; // garde le contenu jusqu'à </item>
 
-        // Extraire le titre
+        // Extraction du titre (gère CDATA)
         const titleMatch = itemContent.match(/<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/title>/i);
         const titre = titleMatch ? titleMatch[1].trim() : '';
-        
-        // Extraire le lien
+
+        // Extraction du lien
         const linkMatch = itemContent.match(/<link>(.*?)<\/link>/i);
         const url = linkMatch ? linkMatch[1].trim() : '';
-        
-        // Extraire la date de publication
+
+        // Extraction de la date
         const pubDateMatch = itemContent.match(/<pubDate>(.*?)<\/pubDate>/i);
         let date = '';
         if (pubDateMatch) {
