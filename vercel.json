@@ -16,16 +16,5 @@
       "destination": "https://www.diagotop.fr/:path*",
       "permanent": true
     }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Content-Encoding",
-          "value": "br"
-        }
-      ]
-    }
   ]
 }
