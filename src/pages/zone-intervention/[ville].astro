@@ -14,8 +14,20 @@ const villeFormatee = ville
   .map(mot => mot.charAt(0).toUpperCase() + mot.slice(1))
   .join(' ');
 
-// Dictionnaire des descriptions personnalisées
+// Dictionnaire des descriptions personnalisées (top 10 + existantes)
 const descriptions: Record<string, string> = {
+  // Top 10 prioritaire SEO
+  "paris-15": "Diagnostic immobilier dans le 15e arrondissement par un expert certifié DIAGOTOP. DPE, amiante, plomb, électricité dès 120€. Devis gratuit, intervention sous 24h.",
+  "boulogne-billancourt": "Votre diagnostic immobilier à Boulogne-Billancourt par DIAGOTOP. Rapport complet sous 48h, valable immédiatement. Devis gratuit, sans engagement.",
+  "versailles": "Diagnostics immobiliers obligatoires à Versailles certifiés DIAGOTOP. DPE, amiante, Carrez. Intervention 7j/7, rapport sous 48h. Devis gratuit.",
+  "saint-denis": "Expert diagnostic immobilier à Saint-Denis (93). DPE, amiante, plomb, électricité, gaz. Devis gratuit, intervention rapide dans toute la ville. DIAGOTOP certifié.",
+  "argenteuil": "Diagnostic immobilier à Argenteuil à deux pas de Bezons. DIAGOTOP, expert certifié. Devis gratuit, rapport sous 48h. DPE dès 120€.",
+  "nanterre": "Besoin d'un diagnostic immobilier à Nanterre ? DIAGOTOP intervient 7j/7. DPE, amiante, plomb. Devis gratuit, rapport complet et certifié.",
+  "creteil": "Diagnostics immobiliers à Créteil par DIAGOTOP. Experts certifiés pour vos ventes et locations. Devis en ligne, intervention sous 48h.",
+  "montreuil": "Diagnostic immobilier à Montreuil (93) avec DIAGOTOP. DPE, gaz, électricité, amiante. Devis gratuit, rapport valide immédiatement.",
+  "aulnay-sous-bois": "DIAGOTOP, votre diagnostiqueur certifié à Aulnay-sous-Bois. DPE, plomb, loi Carrez. Devis gratuit, intervention rapide 7j/7.",
+  "bezons": "DIAGOTOP, votre expert en diagnostic immobilier à Bezons (95870). Basé rue Francis de Pressensé. Devis gratuit, intervention locale sous 24h.",
+
   // Paris (75)
   "paris-1": "Diagnostics immobiliers dans le 1er arrondissement de Paris : Louvre, Palais-Royal, Halles. Intervention rapide et certifiée.",
   "paris-2": "Votre diagnostiqueur certifié intervient dans le 2ème arrondissement de Paris : Bourse, Sentier, Montorgueil. Devis gratuit.",
@@ -31,7 +43,6 @@ const descriptions: Record<string, string> = {
   "paris-12": "Nous intervenons dans tout le 12ème arrondissement de Paris : Bercy, Picpus, Bel-Air... Diagnostic rapide et certifié.",
   "paris-13": "Diagnostics immobiliers à Paris 13 : Bibliothèque François-Mitterrand, Butte-aux-Cailles, Italie.",
   "paris-14": "Intervention pour diagnostics dans le 14ème arrondissement : Montparnasse, Denfert-Rochereau, Alésia.",
-  "paris-15": "Du quartier de Grenelle à Vaugirard, votre diagnostiqueur certifié intervient dans le 15ème arrondissement en 24h.",
   "paris-16": "Diagnostics immobiliers dans le 16ème arrondissement : Passy, Auteuil, Muette. Service haut de gamme.",
   "paris-17": "Expert en diagnostics à Paris 17 : Batignolles, Épinettes, Ternes. Devis gratuit et intervention rapide.",
   "paris-18": "Diagnostics DPE, Amiante, Plomb à Montmartre, La Chapelle, Goutte d'Or (18ème). Rapport certifié.",
@@ -51,7 +62,6 @@ const descriptions: Record<string, string> = {
   "montereau-fault-yonne": "Diagnostics à Montereau-Fault-Yonne et ses environs (confluence Seine-Yonne). Intervention rapide.",
 
   // Yvelines (78)
-  "versailles": "Diagnostics immobiliers à Versailles et dans les quartiers Notre-Dame, Saint-Louis, Porchefontaine. Service premium.",
   "sartrouville": "Expert en diagnostics à Sartrouville et la boucle de Montesson. Devis gratuit, intervention rapide.",
   "saint-germain-en-laye": "Diagnostics DPE, Amiante, Plomb à Saint-Germain-en-Laye et sa région. Rapport certifié sous 48h.",
   "mantes-la-jolie": "Intervention pour diagnostics à Mantes-la-Jolie et Mantes-la-Ville. Service rapide dans le Mantois.",
@@ -70,8 +80,6 @@ const descriptions: Record<string, string> = {
   "sainte-genevieve-des-bois": "Diagnostics immobiliers à Sainte-Geneviève-des-Bois et le secteur du Val d'Orge.",
 
   // Hauts-de-Seine (92)
-  "boulogne-billancourt": "Diagnostics immobiliers à Boulogne-Billancourt et ses quartiers (Point du Jour, République). Devis gratuit, rapport sous 48h.",
-  "nanterre": "Expert en diagnostics à Nanterre : Université, Préfecture, Petit-Nanterre. Intervention rapide.",
   "asnieres-sur-seine": "Diagnostics DPE, Amiante, Plomb à Asnières-sur-Seine et la boucle nord des Hauts-de-Seine.",
   "colombes": "Intervention pour diagnostics à Colombes et Bois-Colombes. Service professionnel et certifié.",
   "courbevoie": "Diagnostics immobiliers à Courbevoie et La Défense. Expert à votre disposition.",
@@ -81,10 +89,7 @@ const descriptions: Record<string, string> = {
   "montrouge": "Expert en diagnostics à Montrouge et le sud de Paris. Rapport certifié sous 48h.",
 
   // Seine-Saint-Denis (93)
-  "saint-denis": "Diagnostics immobiliers à Saint-Denis : Basilique, Université, Stade de France. Devis gratuit.",
-  "montreuil": "Intervention pour diagnostics à Montreuil et ses quartiers (Bas Montreuil, Murs à pêches).",
   "aubervilliers": "Diagnostics DPE, Amiante, Plomb à Aubervilliers et La Plaine Saint-Denis. Expert certifié.",
-  "aulnay-sous-bois": "Votre diagnostiqueur certifié à Aulnay-sous-Bois et Sevran. Intervention rapide.",
   "drancy": "Diagnostics immobiliers à Drancy et Le Bourget. Service professionnel, rapport sous 48h.",
   "noisy-le-grand": "Expert en diagnostics à Noisy-le-Grand et Porte de Paris. Devis en ligne immédiat.",
   "pantin": "Diagnostics à Pantin : Quatre Chemins, Église, Courtillières. Intervention 7j/7.",
@@ -93,7 +98,6 @@ const descriptions: Record<string, string> = {
 
   // Val-de-Marne (94)
   "vitry-sur-seine": "Diagnostics immobiliers à Vitry-sur-Seine et ses quartiers en pleine mutation. Expert certifié.",
-  "creteil": "Diagnostics DPE, Amiante, Plomb à Créteil : lac, Échat, Université. Devis gratuit.",
   "champigny-sur-marne": "Intervention pour diagnostics à Champigny-sur-Marne et la boucle de la Marne.",
   "saint-maur-des-fosses": "Diagnostics à Saint-Maur-des-Fossés : La Varenne, Adamville, Le Parc. Service haut de gamme.",
   "ivry-sur-seine": "Votre diagnostiqueur certifié à Ivry-sur-Seine et le 13ème arrondissement limitrophe.",
@@ -102,12 +106,10 @@ const descriptions: Record<string, string> = {
   "vincennes": "Expert en diagnostics immobiliers à Vincennes et aux alentours (Fontenay, Saint-Mandé). Intervention rapide.",
 
   // Val-d'Oise (95)
-  "argenteuil": "Diagnostics immobiliers à Argenteuil et ses quartiers (Val, Centre-ville, Orgemont). Devis gratuit.",
   "cergy": "Intervention pour diagnostics à Cergy et Cergy-Pontoise. Expert certifié à votre service.",
   "sarcelles": "Diagnostics DPE, Amiante, Plomb à Sarcelles et Villiers-le-Bel. Rapport sous 48h.",
   "garges-les-gonesse": "Votre diagnostiqueur certifié à Garges-lès-Gonesse et Arnouville. Service de proximité.",
   "franconville": "Diagnostics immobiliers à Franconville et la vallée de Montmorency. Intervention rapide.",
-  "bezons": "Expert en diagnostics à Bezons et la boucle de la Seine. Devis en ligne.",
   "pontoise": "Diagnostics à Pontoise et sa région. Service professionnel pour vos transactions immobilières.",
   "herblay-sur-seine": "Diagnostics immobiliers à Herblay-sur-Seine et La Frette-sur-Seine. Rapport certifié."
 };
@@ -115,12 +117,27 @@ const descriptions: Record<string, string> = {
 const descriptionLocale = descriptions[ville] || `DIAGOTOP intervient à ${villeFormatee} et dans toute l'Île-de-France pour vos diagnostics immobiliers (DPE, Amiante, Plomb...). Devis gratuit et rapide.`;
 
 const titleSEO = `Diagnostic immobilier à ${villeFormatee} | DIAGOTOP Île-de-France`;
-const descSEO = `Expert certifié en diagnostics immobiliers à ${villeFormatee}. DPE, Amiante, Plomb, Électricité, Gaz... Intervention sous 48h. Devis gratuit.`;
+const descSEO = descriptionLocale;
+
+// Villes proches pour maillage interne (logique simplifiée)
+const villesProches = VILLES_DESSERVIES
+  .filter(v => v !== ville)
+  .sort(() => 0.5 - Math.random())
+  .slice(0, 5)
+  .map(v => ({
+    slug: v,
+    nom: v.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ')
+  }));
 ---
 
 <BaseLayout title={titleSEO} description={descSEO}>
   <section class="section" style="padding-top: 140px;">
     <div class="container">
+      <!-- Fil d'Ariane SEO -->
+      <nav aria-label="Fil d'ariane" style="margin-bottom: 24px; font-size: 14px; color: var(--muted);">
+        <a href="/">Accueil</a> &rsaquo; <a href="/zones-intervention">Zones d'intervention</a> &rsaquo; <span>{villeFormatee}</span>
+      </nav>
+
       <div class="text-center">
         <div class="tag">📍 Zone d'intervention</div>
         <h1>Diagnostic immobilier à <span class="grad">{villeFormatee}</span></h1>
@@ -156,6 +173,20 @@ const descSEO = `Expert certifié en diagnostics immobiliers à ${villeFormatee}
           </div>
         </div>
       </div>
+
+      <!-- Villes proches (maillage interne) -->
+      {villesProches.length > 0 && (
+        <div style="margin-top: 48px; text-align: center;">
+          <h2 style="margin-bottom: 24px;">Diagnostics immobiliers à proximité</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+            {villesProches.map(v => (
+              <a href={`/zone-intervention/${v.slug}`} style="background: var(--bg); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: var(--black); text-decoration: none; transition: all 0.2s;">
+                {v.nom}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
 
       <!-- Appel à l'action -->
       <div style="text-align: center; margin-top: 48px;">
