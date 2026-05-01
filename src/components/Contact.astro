@@ -51,6 +51,38 @@
               <label for="email">Email *</label>
               <input type="email" id="email" name="email" required />
             </div>
+
+            <!-- Nouveaux champs de qualification -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="mission_type">Type de mission</label>
+                <select id="mission_type" name="mission_type">
+                  <option value="">Sélectionnez...</option>
+                  <option>Vente</option>
+                  <option>Location</option>
+                  <option>Travaux / Rénovation</option>
+                  <option>Audit énergétique</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="surface">Surface approximative (m²)</label>
+                <input type="number" id="surface" name="surface" placeholder="Ex: 65" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="heating_type">Type de chauffage</label>
+              <select id="heating_type" name="heating_type">
+                <option value="">Sélectionnez...</option>
+                <option>Électrique</option>
+                <option>Gaz</option>
+                <option>Fioul</option>
+                <option>Pompe à chaleur (PAC)</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <!-- Fin nouveaux champs -->
+
             <div class="form-group">
               <label for="property_type">Type de bien</label>
               <select id="property_type" name="property_type">
@@ -89,7 +121,6 @@
 </section>
 
 <script>
-  // Chargement différé d'EmailJS – depuis notre serveur (cache longue durée)
   function loadEmailJS(callback) {
     if (window.emailjs) {
       callback();
@@ -108,7 +139,6 @@
     // Vérification honeypot
     const honeypot = document.getElementById('honeypot');
     if (honeypot && honeypot.value.trim() !== '') {
-      // Bot détecté : on simule un succès sans rien envoyer
       document.querySelector('.form-body').classList.add('hide');
       document.getElementById('form-success').classList.add('show');
       return;
@@ -122,6 +152,9 @@
       const message = document.getElementById('message').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const propertyType = document.getElementById('property_type').value;
+      const missionType = document.getElementById('mission_type').value;
+      const surface = document.getElementById('surface').value.trim();
+      const heatingType = document.getElementById('heating_type').value;
 
       if (!name || !email || !message) {
         alert('Veuillez remplir les champs obligatoires.');
@@ -133,6 +166,9 @@
         from_email: email,
         phone: phone,
         property_type: propertyType,
+        mission_type: missionType,
+        surface: surface,
+        heating_type: heatingType,
         message: message
       };
 
