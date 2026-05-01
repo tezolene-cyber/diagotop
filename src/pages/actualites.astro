@@ -35,7 +35,7 @@ if (!articles || articles.length === 0) {
 
   </div>
 
-  <!-- Données structurées pour les articles (Google Actualités) -->
+  <!-- Données structurées pour les articles -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": articles.map(a => ({
@@ -43,10 +43,7 @@ if (!articles || articles.length === 0) {
       "headline": a.titre,
       "url": a.url,
       "datePublished": a.date,
-      "sourceOrganization": {
-        "@type": "Organization",
-        "name": a.source
-      }
+      "sourceOrganization": { "@type": "Organization", "name": a.source }
     }))
   })} />
 </BaseLayout>
