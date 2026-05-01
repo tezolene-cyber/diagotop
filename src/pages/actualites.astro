@@ -28,7 +28,6 @@ if (!articles || articles.length === 0) {
       ))}
     </div>
 
-   
   </div>
 
   <!-- Données structurées pour les articles (Google Actualités) -->
@@ -47,7 +46,7 @@ if (!articles || articles.length === 0) {
   })} />
 </BaseLayout>
 
-<style>
+<style is:inline>
   .actualites-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
