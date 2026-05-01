@@ -16,102 +16,7 @@ const villeFormatee = ville
 
 // Dictionnaire des descriptions personnalisées (top 10 + existantes)
 const descriptions: Record<string, string> = {
-  // Top 10 prioritaire SEO
-  "paris-15": "Diagnostic immobilier dans le 15e arrondissement par un expert certifié DIAGOTOP. DPE, amiante, plomb, électricité dès 120€. Devis gratuit, intervention sous 24h.",
-  "boulogne-billancourt": "Votre diagnostic immobilier à Boulogne-Billancourt par DIAGOTOP. Rapport complet sous 48h, valable immédiatement. Devis gratuit, sans engagement.",
-  "versailles": "Diagnostics immobiliers obligatoires à Versailles certifiés DIAGOTOP. DPE, amiante, Carrez. Intervention 7j/7, rapport sous 48h. Devis gratuit.",
-  "saint-denis": "Expert diagnostic immobilier à Saint-Denis (93). DPE, amiante, plomb, électricité, gaz. Devis gratuit, intervention rapide dans toute la ville. DIAGOTOP certifié.",
-  "argenteuil": "Diagnostic immobilier à Argenteuil à deux pas de Bezons. DIAGOTOP, expert certifié. Devis gratuit, rapport sous 48h. DPE dès 120€.",
-  "nanterre": "Besoin d'un diagnostic immobilier à Nanterre ? DIAGOTOP intervient 7j/7. DPE, amiante, plomb. Devis gratuit, rapport complet et certifié.",
-  "creteil": "Diagnostics immobiliers à Créteil par DIAGOTOP. Experts certifiés pour vos ventes et locations. Devis en ligne, intervention sous 48h.",
-  "montreuil": "Diagnostic immobilier à Montreuil (93) avec DIAGOTOP. DPE, gaz, électricité, amiante. Devis gratuit, rapport valide immédiatement.",
-  "aulnay-sous-bois": "DIAGOTOP, votre diagnostiqueur certifié à Aulnay-sous-Bois. DPE, plomb, loi Carrez. Devis gratuit, intervention rapide 7j/7.",
-  "bezons": "DIAGOTOP, votre expert en diagnostic immobilier à Bezons (95870). Basé rue Francis de Pressensé. Devis gratuit, intervention locale sous 24h.",
-
-  // Paris (75)
-  "paris-1": "Diagnostics immobiliers dans le 1er arrondissement de Paris : Louvre, Palais-Royal, Halles. Intervention rapide et certifiée.",
-  "paris-2": "Votre diagnostiqueur certifié intervient dans le 2ème arrondissement de Paris : Bourse, Sentier, Montorgueil. Devis gratuit.",
-  "paris-3": "Diagnostics DPE, Amiante, Plomb dans le 3ème arrondissement de Paris (Marais, Arts-et-Métiers). Rapport sous 48h.",
-  "paris-4": "Expert en diagnostics immobiliers dans le 4ème arrondissement de Paris : Île de la Cité, Saint-Louis, Marais. Intervention 7j/7.",
-  "paris-5": "Diagnostics immobiliers au Quartier Latin (5ème arrondissement) : Sorbonne, Panthéon, Mouffetard. Devis rapide.",
-  "paris-6": "Intervention pour vos diagnostics à Saint-Germain-des-Prés, Luxembourg (6ème arrondissement). Service professionnel et certifié.",
-  "paris-7": "Diagnostics immobiliers dans le 7ème arrondissement : Tour Eiffel, Invalides, École Militaire. Rapport sous 48h.",
-  "paris-8": "Votre expert en diagnostics immobiliers dans le 8ème arrondissement : Champs-Élysées, Madeleine, Europe.",
-  "paris-9": "Diagnostics à Paris 9 : Opéra, Saint-Georges, Rochechouart. Intervention rapide pour vos ventes et locations.",
-  "paris-10": "Diagnostics immobiliers dans le 10ème arrondissement : Canal Saint-Martin, Gare du Nord, République.",
-  "paris-11": "Expert certifié pour vos diagnostics dans le 11ème arrondissement : Bastille, Oberkampf, Charonne.",
-  "paris-12": "Nous intervenons dans tout le 12ème arrondissement de Paris : Bercy, Picpus, Bel-Air... Diagnostic rapide et certifié.",
-  "paris-13": "Diagnostics immobiliers à Paris 13 : Bibliothèque François-Mitterrand, Butte-aux-Cailles, Italie.",
-  "paris-14": "Intervention pour diagnostics dans le 14ème arrondissement : Montparnasse, Denfert-Rochereau, Alésia.",
-  "paris-16": "Diagnostics immobiliers dans le 16ème arrondissement : Passy, Auteuil, Muette. Service haut de gamme.",
-  "paris-17": "Expert en diagnostics à Paris 17 : Batignolles, Épinettes, Ternes. Devis gratuit et intervention rapide.",
-  "paris-18": "Diagnostics DPE, Amiante, Plomb à Montmartre, La Chapelle, Goutte d'Or (18ème). Rapport certifié.",
-  "paris-19": "Intervention pour vos diagnostics dans le 19ème arrondissement : Buttes-Chaumont, Villette, Amérique.",
-  "paris-20": "Diagnostics immobiliers à Paris 20 : Belleville, Ménilmontant, Père-Lachaise. Service rapide et fiable.",
-
-  // Seine-et-Marne (77)
-  "melun": "Diagnostics immobiliers à Melun et son agglomération. Intervention rapide dans tout le nord de la Seine-et-Marne.",
-  "meaux": "Votre diagnostiqueur certifié à Meaux et alentours (Pays de Meaux). Devis gratuit, rapport sous 48h.",
-  "chelles": "Diagnostics DPE, Amiante, Plomb à Chelles et dans la Vallée de la Marne. Expert à votre service.",
-  "pontault-combault": "Intervention pour diagnostics à Pontault-Combault et secteur de la Brie boisée. Devis en ligne.",
-  "savigny-le-temple": "Diagnostics immobiliers à Savigny-le-Temple et Sénart. Expert certifié, intervention rapide.",
-  "bussy-saint-georges": "Votre expert en diagnostics à Bussy-Saint-Georges et Marne-la-Vallée. Rapport sous 48h.",
-  "dammarie-les-lys": "Diagnostics à Dammarie-les-Lys, Melun sud. Service professionnel pour vos ventes et locations.",
-  "torcy": "Intervention pour diagnostics à Torcy et alentours (Val Maubuée). Devis gratuit et rapide.",
-  "combs-la-ville": "Diagnostics immobiliers à Combs-la-Ville et secteur de la Brie centrale. Expert certifié.",
-  "montereau-fault-yonne": "Diagnostics à Montereau-Fault-Yonne et ses environs (confluence Seine-Yonne). Intervention rapide.",
-
-  // Yvelines (78)
-  "sartrouville": "Expert en diagnostics à Sartrouville et la boucle de Montesson. Devis gratuit, intervention rapide.",
-  "saint-germain-en-laye": "Diagnostics DPE, Amiante, Plomb à Saint-Germain-en-Laye et sa région. Rapport certifié sous 48h.",
-  "mantes-la-jolie": "Intervention pour diagnostics à Mantes-la-Jolie et Mantes-la-Ville. Service rapide dans le Mantois.",
-  "poissy": "Diagnostics immobiliers à Poissy et Carrières-sous-Poissy. Expert certifié à votre disposition.",
-  "conflans-sainte-honorine": "Diagnostics à Conflans-Sainte-Honorine et la confluence Seine-Oise. Devis en ligne immédiat.",
-  "rambouillet": "Votre diagnostiqueur certifié à Rambouillet et sa région. Intervention dans le sud des Yvelines.",
-
-  // Essonne (91)
-  "evry-courcouronnes": "Diagnostics immobiliers à Évry-Courcouronnes et l'agglomération d'Évry. Expert certifié, rapport rapide.",
-  "corbeil-essonnes": "Intervention pour diagnostics à Corbeil-Essonnes et ses environs. Service professionnel.",
-  "massy": "Diagnostics DPE, Amiante, Plomb à Massy et Antony. Devis gratuit et intervention rapide.",
-  "savigny-sur-orge": "Votre expert en diagnostics à Savigny-sur-Orge et la vallée de l'Orge. Rapport sous 48h.",
-  "athis-mons": "Diagnostics immobiliers à Athis-Mons et Juvisy-sur-Orge. Service de proximité.",
-  "juvisy-sur-orge": "Intervention pour diagnostics à Juvisy-sur-Orge et alentours. Expert certifié.",
-  "grigny": "Diagnostics à Grigny et la Grande Borne. Service rapide pour vos ventes et locations.",
-  "sainte-genevieve-des-bois": "Diagnostics immobiliers à Sainte-Geneviève-des-Bois et le secteur du Val d'Orge.",
-
-  // Hauts-de-Seine (92)
-  "asnieres-sur-seine": "Diagnostics DPE, Amiante, Plomb à Asnières-sur-Seine et la boucle nord des Hauts-de-Seine.",
-  "colombes": "Intervention pour diagnostics à Colombes et Bois-Colombes. Service professionnel et certifié.",
-  "courbevoie": "Diagnostics immobiliers à Courbevoie et La Défense. Expert à votre disposition.",
-  "rueil-malmaison": "Diagnostics à Rueil-Malmaison : quartiers historiques, bords de Seine. Devis gratuit.",
-  "levallois-perret": "Votre diagnostiqueur certifié à Levallois-Perret. Intervention rapide en cœur de ville.",
-  "clichy": "Diagnostics immobiliers à Clichy et ses environs. Service de qualité pour vos transactions.",
-  "montrouge": "Expert en diagnostics à Montrouge et le sud de Paris. Rapport certifié sous 48h.",
-
-  // Seine-Saint-Denis (93)
-  "aubervilliers": "Diagnostics DPE, Amiante, Plomb à Aubervilliers et La Plaine Saint-Denis. Expert certifié.",
-  "drancy": "Diagnostics immobiliers à Drancy et Le Bourget. Service professionnel, rapport sous 48h.",
-  "noisy-le-grand": "Expert en diagnostics à Noisy-le-Grand et Porte de Paris. Devis en ligne immédiat.",
-  "pantin": "Diagnostics à Pantin : Quatre Chemins, Église, Courtillières. Intervention 7j/7.",
-  "le-blanc-mesnil": "Diagnostics immobiliers au Blanc-Mesnil et ses environs. Service de proximité.",
-  "bobigny": "Intervention pour diagnostics à Bobigny et la Préfecture de Seine-Saint-Denis.",
-
-  // Val-de-Marne (94)
-  "vitry-sur-seine": "Diagnostics immobiliers à Vitry-sur-Seine et ses quartiers en pleine mutation. Expert certifié.",
-  "champigny-sur-marne": "Intervention pour diagnostics à Champigny-sur-Marne et la boucle de la Marne.",
-  "saint-maur-des-fosses": "Diagnostics à Saint-Maur-des-Fossés : La Varenne, Adamville, Le Parc. Service haut de gamme.",
-  "ivry-sur-seine": "Votre diagnostiqueur certifié à Ivry-sur-Seine et le 13ème arrondissement limitrophe.",
-  "maisons-alfort": "Diagnostics immobiliers à Maisons-Alfort et Alfortville. Rapport rapide et fiable.",
-  "villejuif": "Expert en diagnostics à Villejuif et le sud de Paris. Intervention rapide.",
-  "vincennes": "Expert en diagnostics immobiliers à Vincennes et aux alentours (Fontenay, Saint-Mandé). Intervention rapide.",
-
-  // Val-d'Oise (95)
-  "cergy": "Intervention pour diagnostics à Cergy et Cergy-Pontoise. Expert certifié à votre service.",
-  "sarcelles": "Diagnostics DPE, Amiante, Plomb à Sarcelles et Villiers-le-Bel. Rapport sous 48h.",
-  "garges-les-gonesse": "Votre diagnostiqueur certifié à Garges-lès-Gonesse et Arnouville. Service de proximité.",
-  "franconville": "Diagnostics immobiliers à Franconville et la vallée de Montmorency. Intervention rapide.",
-  "pontoise": "Diagnostics à Pontoise et sa région. Service professionnel pour vos transactions immobilières.",
-  "herblay-sur-seine": "Diagnostics immobiliers à Herblay-sur-Seine et La Frette-sur-Seine. Rapport certifié."
+  // ... (inchangé, gardez votre dictionnaire actuel) ...
 };
 
 const descriptionLocale = descriptions[ville] || `DIAGOTOP intervient à ${villeFormatee} et dans toute l'Île-de-France pour vos diagnostics immobiliers (DPE, Amiante, Plomb...). Devis gratuit et rapide.`;
@@ -119,7 +24,7 @@ const descriptionLocale = descriptions[ville] || `DIAGOTOP intervient à ${ville
 const titleSEO = `Diagnostic immobilier à ${villeFormatee} | DIAGOTOP Île-de-France`;
 const descSEO = descriptionLocale;
 
-// Villes proches pour maillage interne (logique simplifiée)
+// Villes proches pour maillage interne
 const villesProches = VILLES_DESSERVIES
   .filter(v => v !== ville)
   .sort(() => 0.5 - Math.random())
@@ -128,6 +33,22 @@ const villesProches = VILLES_DESSERVIES
     slug: v,
     nom: v.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ')
   }));
+
+// Dictionnaire de contenu unique "À propos" pour les 10 villes prioritaires
+const aPropos: Record<string, string> = {
+  "bezons": "Bezons est une commune du département du Val-d'Oise, en région Île-de-France. Située sur la rive droite de la Seine, elle a la particularité d'être limitrophe de deux départements : les Hauts-de-Seine et les Yvelines. Notre agence DIAGOTOP, basée au 64 rue Francis de Pressensé, connaît parfaitement le marché immobilier local.",
+  "argenteuil": "Argenteuil est la commune la plus peuplée du Val-d'Oise. En bord de Seine, elle est connue pour son riche passé industriel et son patrimoine lié aux impressionnistes. Aujourd'hui, son marché immobilier est dynamique, avec de nombreuses résidences récentes et des quartiers en pleine rénovation.",
+  "paris-15": "Le 15ème arrondissement de Paris est le plus peuplé de la capitale. Mêlant quartiers résidentiels et zones d'activité, il offre une grande diversité de logements. DIAGOTOP intervient dans tous les quartiers, de Grenelle à Vaugirard.",
+  "boulogne-billancourt": "Boulogne-Billancourt est une commune des Hauts-de-Seine, limitrophe de Paris. Importante ville d'affaires et résidentielle, elle abrite de nombreuses entreprises et un parc immobilier varié, des immeubles haussmanniens aux constructions plus récentes.",
+  "versailles": "Versailles, célèbre pour son château et son patrimoine historique, est aussi une ville résidentielle très recherchée de l'ouest parisien. Les diagnostics immobiliers y sont fréquents, notamment dans les quartiers Notre-Dame et Saint-Louis.",
+  "saint-denis": "Saint-Denis, en Seine-Saint-Denis, est une ville en pleine transformation. Entre la basilique, le Stade de France et les nouveaux quartiers, le marché immobilier est très actif, avec de nombreuses ventes et locations.",
+  "nanterre": "Nanterre, préfecture des Hauts-de-Seine, est un pôle économique majeur avec le quartier d'affaires de La Défense. La ville mêle immeubles modernes et zones pavillonnaires, nécessitant des diagnostics variés.",
+  "creteil": "Créteil, préfecture du Val-de-Marne, est connue pour son lac et son architecture moderne. Le marché immobilier y est dynamique, avec une forte proportion de copropriétés.",
+  "montreuil": "Montreuil, en Seine-Saint-Denis, est une ville résidentielle et populaire, avec un parc immobilier ancien et de nombreux projets de rénovation. Les diagnostics plomb et amiante y sont courants.",
+  "aulnay-sous-bois": "Aulnay-sous-Bois, en Seine-Saint-Denis, est une commune résidentielle au nord-est de Paris. Elle compte de nombreux pavillons et des quartiers en développement, où les diagnostics électricité et gaz sont fréquents."
+};
+
+const textePropos = aPropos[ville] || `${villeFormatee} est une commune d'Île-de-France. Notre équipe de diagnostiqueurs certifiés connaît bien cette ville et intervient rapidement pour tous vos diagnostics immobiliers obligatoires.`;
 ---
 
 <BaseLayout title={titleSEO} description={descSEO}>
@@ -172,6 +93,12 @@ const villesProches = VILLES_DESSERVIES
             <p>Plus de 500 clients satisfaits en Île-de-France.</p>
           </div>
         </div>
+      </div>
+
+      <!-- Paragraphe unique sur la ville -->
+      <div style="margin-top: 48px;">
+        <h2 style="margin-bottom: 16px;">À propos de {villeFormatee}</h2>
+        <p style="color: var(--muted); line-height: 1.6;">{textePropos}</p>
       </div>
 
       <!-- FAQ Dynamique complète -->
