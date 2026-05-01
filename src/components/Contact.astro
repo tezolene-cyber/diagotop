@@ -12,26 +12,26 @@
     <div class="contact-grid">
       <div class="contact-info anim">
         <div class="info-card">
-          <div class="info-icon" aria-label="Téléphone"><span aria-hidden="true">📞</span></div>
+          <div class="info-icon" role="img" aria-label="Téléphone"><span aria-hidden="true">📞</span></div>
           <div><div class="info-label">Téléphone</div><div class="info-val">06 99 00 48 75</div></div>
         </div>
         <div class="info-card">
-          <div class="info-icon" aria-label="Email"><span aria-hidden="true">✉️</span></div>
+          <div class="info-icon" role="img" aria-label="Email"><span aria-hidden="true">✉️</span></div>
           <div><div class="info-label">Email</div><div class="info-val">diagotop.france@outlook.fr</div></div>
         </div>
         <div class="info-card">
-          <div class="info-icon" aria-label="Zone d'intervention"><span aria-hidden="true">📍</span></div>
+          <div class="info-icon" role="img" aria-label="Zone d'intervention"><span aria-hidden="true">📍</span></div>
           <div><div class="info-label">Zone d'intervention</div><div class="info-val">Île-de-France</div></div>
         </div>
         <div class="info-card">
-          <div class="info-icon" aria-label="Disponibilité"><span aria-hidden="true">🕐</span></div>
+          <div class="info-icon" role="img" aria-label="Disponibilité"><span aria-hidden="true">🕐</span></div>
           <div><div class="info-label">Disponibilité</div><div class="info-val">Lun–Sam · 8h–19h</div></div>
         </div>
       </div>
       <div class="form-card anim">
         <div class="form-body">
           <form id="devis-form">
-            <!-- Champ honeypot invisible pour les humains -->
+            <!-- Champ honeypot invisible -->
             <div style="position:absolute;left:-9999px;" aria-hidden="true">
               <label for="honeypot">Laissez ce champ vide</label>
               <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off" />
@@ -52,7 +52,6 @@
               <input type="email" id="email" name="email" required />
             </div>
 
-            <!-- Nouveaux champs de qualification -->
             <div class="form-row">
               <div class="form-group">
                 <label for="mission_type">Type de mission</label>
@@ -81,7 +80,6 @@
                 <option>Autre</option>
               </select>
             </div>
-            <!-- Fin nouveaux champs -->
 
             <div class="form-group">
               <label for="property_type">Type de bien</label>
@@ -136,7 +134,6 @@
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Vérification honeypot
     const honeypot = document.getElementById('honeypot');
     if (honeypot && honeypot.value.trim() !== '') {
       document.querySelector('.form-body').classList.add('hide');
