@@ -28,7 +28,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   <link rel="icon" type="image/png" href="/img/logo.png?v=2" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <!-- Polices Inter auto-hébergées (essentielles uniquement) -->
+  <!-- Polices Inter auto-hébergées (essentielles uniquement) -->
   <link rel="preload" href="/fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/inter-v20-latin-700.woff2" as="font" type="font/woff2" crossorigin />
   <style>
@@ -46,23 +46,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
       font-display: swap;
       src: url('/fonts/inter-v20-latin-700.woff2') format('woff2');
     }
-  </style> 
-  <!-- Google Analytics 4 – chargé après consentement via le bandeau cookies -->
-  <script is:inline>
-    (function() {
-      var consent = localStorage.getItem('cookieConsent');
-      if (consent === 'accept') {
-        var script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR';
-        script.async = true;
-        document.head.appendChild(script);
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-193H6KEEYR');
-      }
-    })();
-  </script>
+  </style>
 
   <!-- Données structurées WebSite + LocalBusiness -->
   <script type="application/ld+json">
@@ -115,6 +99,8 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
   </script>
 </head>
 <body>
+  <div id="top-sentinel" aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 1px; width: 100%; pointer-events: none;"></div>
+
   <!-- Lien d'évitement pour l'accessibilité -->
   <a class="skip-link" href="#main-content">Aller au contenu principal</a>
 
@@ -129,6 +115,22 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
 
   <!-- Scripts différés pour éviter les longues tâches -->
   <script defer src="/js/main.js"></script>
+
+  <!-- Google Analytics – en fin de body pour ne pas bloquer le LCP -->
+  <script is:inline>
+    (function() {
+      var consent = localStorage.getItem('cookieConsent');
+      if (consent === 'accept') {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-193H6KEEYR';
+        script.async = true;
+        document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-193H6KEEYR');
+      }
+    })();
+  </script>
 </body>
-<div id="top-sentinel" aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 1px; width: 100%; pointer-events: none;"></div>
 </html>
