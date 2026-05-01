@@ -12,22 +12,30 @@
 
     <ul class="certif-grid anim" aria-label="Liste des certifications">
       <li class="certif-card">
-        <div class="certif-icon" aria-label="Diagnostic DPE"><span aria-hidden="true">📋</span></div>
+        <span class="certif-icon" role="img" aria-label="Diagnostic DPE">
+          <span aria-hidden="true">📋</span>
+        </span>
         <h3>Certification DPE</h3>
         <p>Diagnostiqueurs certifiés pour le Diagnostic de Performance Énergétique, avec et sans mention.</p>
       </li>
       <li class="certif-card">
-        <div class="certif-icon" aria-label="Diagnostic Amiante"><span aria-hidden="true">🛡️</span></div>
+        <span class="certif-icon" role="img" aria-label="Diagnostic Amiante">
+          <span aria-hidden="true">🛡️</span>
+        </span>
         <h3>Certification Amiante</h3>
         <p>Certification pour le repérage des matériaux contenant de l'amiante (avec et sans mention).</p>
       </li>
       <li class="certif-card">
-        <div class="certif-icon" aria-label="Diagnostics Électricité et Gaz"><span aria-hidden="true">⚡</span></div>
+        <span class="certif-icon" role="img" aria-label="Diagnostics Électricité et Gaz">
+          <span aria-hidden="true">⚡</span>
+        </span>
         <h3>Électricité & Gaz</h3>
         <p>Certifié pour les diagnostics des installations intérieures d'électricité et de gaz.</p>
       </li>
       <li class="certif-card">
-        <div class="certif-icon" aria-label="Assurance RCP"><span aria-hidden="true">🔧</span></div>
+        <span class="certif-icon" role="img" aria-label="Assurance RCP">
+          <span aria-hidden="true">🔧</span>
+        </span>
         <h3>Assurance RCP</h3>
         <p>Couvert par une assurance Responsabilité Civile Professionnelle pour tous nos diagnostics.</p>
       </li>
@@ -68,6 +76,7 @@
   .certif-icon {
     font-size: 42px;
     margin-bottom: 16px;
+    display: inline-block; /* assure le rendu correct */
   }
   .certif-card h3 {
     font-weight: 800;
