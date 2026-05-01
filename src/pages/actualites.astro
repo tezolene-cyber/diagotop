@@ -19,7 +19,7 @@ if (!articles || articles.length === 0) {
         <article class="actualite-card">
           {article.image && (
             <div class="actualite-image">
-              <img src={article.image} alt="" loading="lazy" />
+              <img src={article.image} alt="" loading="lazy" class={article.source === 'Infodiag' ? '' : 'cover-fit'} />
             </div>
           )}
           <div class="actualite-content">
