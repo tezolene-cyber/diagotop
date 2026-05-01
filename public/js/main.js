@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.querySelector('.mobile-menu');
   if (burger && mobileMenu) {
     burger.addEventListener('click', () => {
-      // Évite l'ajustement forcé en décalant la manipulation
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         const isOpen = mobileMenu.classList.toggle('open');
         burger.setAttribute('aria-expanded', isOpen);
-      });
+      }, 0);
     });
   }
 
@@ -22,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollBtn = document.getElementById('scroll-top');
   if (scrollBtn) {
     window.addEventListener('scroll', () => {
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         scrollBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
-      });
+      }, 0);
     });
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
