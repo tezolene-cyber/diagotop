@@ -1,18 +1,82 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { VILLES_DESSERVIES } from '../config/villes';
+
+// Regroupement par département (basé sur les codes postaux implicites dans les slugs ou la liste)
+const departements: Record<string, { nom: string, villes: string[] }> = {
+  "75": { nom: "Paris", villes: [] },
+  "77": { nom: "Seine-et-Marne (77)", villes: [] },
+  "78": { nom: "Yvelines (78)", villes: [] },
+  "91": { nom: "Essonne (91)", villes: [] },
+  "92": { nom: "Hauts-de-Seine (92)", villes: [] },
+  "93": { nom: "Seine-Saint-Denis (93)", villes: [] },
+  "94": { nom: "Val-de-Marne (94)", villes: [] },
+  "95": { nom: "Val-d'Oise (95)", villes: [] }
+};
+
+for (const ville of VILLES_DESSERVIES) {
+  // Attribution simple : les arrondissements parisiens commencent par "paris-"
+  if (ville.startsWith('paris-')) {
+    departements["75"].villes.push(ville);
+  } else if (['melun','meaux','chelles','pontault-combault','savigny-le-temple','bussy-saint-georges','dammarie-les-lys','torcy','combs-la-ville','montereau-fault-yonne'].includes(ville)) {
+    departements["77"].villes.push(ville);
+  } else if (['versailles','sartrouville','saint-germain-en-laye','mantes-la-jolie','poissy','conflans-sainte-honorine','rambouillet'].includes(ville)) {
+    departements["78"].villes.push(ville);
+  } else if (['evry-courcouronnes','corbeil-essonnes','massy','savigny-sur-orge','athis-mons','juvisy-sur-orge','grigny','sainte-genevieve-des-bois'].includes(ville)) {
+    departements["91"].villes.push(ville);
+  } else if (['boulogne-billancourt','nanterre','asnieres-sur-seine','colombes','courbevoie','rueil-malmaison','levallois-perret','clichy','montrouge'].includes(ville)) {
+    departements["92"].villes.push(ville);
+  } else if (['saint-denis','montreuil','aubervilliers','aulnay-sous-bois','drancy','noisy-le-grand','pantin','le-blanc-mesnil','bobigny'].includes(ville)) {
+    departements["93"].villes.push(ville);
+  } else if (['vitry-sur-seine','creteil','champigny-sur-marne','saint-maur-des-fosses','ivry-sur-seine','maisons-alfort','villejuif','vincennes'].includes(ville)) {
+    departements["94"].villes.push(ville);
+  } else if (['argenteuil','cergy','sarcelles','garges-les-gonesse','franconville','bezons','pontoise','herblay-sur-seine'].includes(ville)) {
+    departements["95"].villes.push(ville);
+  }
+}
+
+// Formater un nom de ville
+function formatVille(slug: string): string {
+  return slug.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ');
+}
 ---
-<BaseLayout title="Zones d'intervention - DIAGOTOP" description="Liste des villes où nous intervenons en Île-de-France pour vos diagnostics immobiliers.">
-  <section class="section" style="padding-top: 140px;">
+
+<BaseLayout title="Zones d'intervention – Diagnostics immobiliers en Île-de-France | DIAGOTOP" description="DIAGOTOP intervient dans plus de 80 villes d'Île-de-France pour vos diagnostics immobiliers. Retrouvez votre ville et obtenez un devis gratuit.">
+  <section class="section" style="padding-top: 140px; padding-bottom: 80px;">
     <div class="container">
-      <h1>Zones d'intervention en Île-de-France</h1>
-      <p>DIAGOTOP intervient dans les villes suivantes :</p>
-      <ul style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px;">
-        {VILLES_DESSERVIES.map(ville => {
-          const nom = ville.split('-').map(m => m.charAt(0).toUpperCase() + m.slice(1)).join(' ');
-          return <li><a href={`/zone-intervention/${ville}`}>{nom}</a></li>;
-        })}
-      </ul>
+      <nav aria-label="Fil d'ariane" style="margin-bottom: 32px; font-size: 14px; color: var(--muted);">
+        <a href="/">Accueil</a> &rsaquo; <span aria-current="page">Zones d'intervention</span>
+      </nav>
+
+      <div class="text-center" style="margin-bottom: 48px;">
+        <div class="tag">📍 Île-de-France</div>
+        <h1>Zones d'intervention en Île-de-France</h1>
+        <p class="section-sub">DIAGOTOP intervient dans toutes les villes listées ci-dessous. Chaque page vous donne des informations spécifiques sur les diagnostics obligatoires pour votre commune.</p>
+      </div>
+
+      {Object.entries(departements).map(([code, dept]) => (
+        dept.villes.length > 0 && (
+          <div style="margin-bottom: 40px;">
+            <h2 style="margin-bottom: 16px; color: var(--navy); border-bottom: 2px solid var(--gold); padding-bottom: 8px;">{dept.nom}</h2>
+            <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; list-style: none; padding: 0;">
+              {dept.villes.map(ville => (
+                <li>
+                  <a href={`/zone-intervention/${ville}`} style="display: block; padding: 10px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 12px; color: var(--text); text-decoration: none; transition: all 0.2s;">
+                    {formatVille(ville)}
+                    <span style="float: right; color: var(--gold);">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      ))}
+
+      <div style="text-align: center; margin-top: 60px; background: var(--bg); padding: 40px; border-radius: 24px;">
+        <h2 style="margin-bottom: 16px;">Votre ville n'est pas listée ?</h2>
+        <p style="margin-bottom: 24px;">Nous intervenons dans toute l'Île-de-France. Contactez-nous pour savoir si nous pouvons nous déplacer chez vous.</p>
+        <a href="/#contact" class="btn btn-primary">Demander un devis gratuit</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
