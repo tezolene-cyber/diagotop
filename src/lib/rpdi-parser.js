@@ -1,4 +1,4 @@
-// Parser RSS robuste par découpage de chaînes
+// Parser RSS robuste par découpage de chaînes – avec extraction d'image
 export async function fetchActualites() {
   const sources = [
     {
@@ -51,8 +51,13 @@ export async function fetchActualites() {
           }
         }
 
+        // 🆕 Extraction de l'image (première balise <img> dans description ou content:encoded)
+        let image = '';
+        const imgMatch = itemContent.match(/<img[^>]+src="([^"]+)"/i);
+        if (imgMatch) image = imgMatch[1];
+
         if (titre && url) {
-          allArticles.push({ titre, url, date, source: source.name });
+          allArticles.push({ titre, url, date, source: source.name, image });
           count++;
         }
       }
@@ -75,30 +80,25 @@ export async function fetchActualites() {
   // Trier tous les articles par date décroissante
   unique.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // --- Logique : 3 max par source, puis complément si < 6 articles ---
-  const maxPerSourceFirstPass = 3;
+  // Logique : 3 max par source
+  const maxPerSource = 3;
   const selected = [];
   const counts = {};
 
-  // Première passe : jusqu'à 3 par source
-  const remaining = [];
   for (const art of unique) {
+    if (selected.length >= 6) break;
     const src = art.source;
     counts[src] = counts[src] || 0;
-    if (counts[src] < maxPerSourceFirstPass) {
+    if (counts[src] < maxPerSource) {
       selected.push(art);
       counts[src]++;
-    } else {
-      remaining.push(art);
     }
   }
 
-  // Si on n'a pas 6 articles, on complète avec les restants
   if (selected.length < 6) {
-    const needed = 6 - selected.length;
-    selected.push(...remaining.slice(0, needed));
+    const remaining = unique.filter(a => !selected.includes(a));
+    selected.push(...remaining.slice(0, 6 - selected.length));
   }
-  // ------------------------------------------------------------------------
 
   if (selected.length === 0) {
     console.warn('Aucun article extrait, utilisation du fallback');

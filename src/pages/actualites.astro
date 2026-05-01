@@ -17,6 +17,11 @@ if (!articles || articles.length === 0) {
     <div class="actualites-grid">
       {articles.map((article, i) => (
         <article class="actualite-card">
+          {article.image && (
+            <div class="actualite-image">
+              <img src={article.image} alt="" loading="lazy" />
+            </div>
+          )}
           <div class="actualite-content">
             <div class="actualite-source">{article.source}</div>
             <h2 class="actualite-title">
@@ -27,7 +32,7 @@ if (!articles || articles.length === 0) {
         </article>
       ))}
     </div>
-    <!-- cache bust v4 -->
+
   </div>
 
   <!-- Données structurées pour les articles (Google Actualités) -->
