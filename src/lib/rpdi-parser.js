@@ -1,4 +1,4 @@
-// Parser RSS robuste par découpage de chaînes – avec extraction d'image
+// Parser RSS robuste par découpage de chaînes – avec extraction d'image + fallback
 export async function fetchActualites() {
   const sources = [
     {
@@ -55,6 +55,15 @@ export async function fetchActualites() {
         let image = '';
         const imgMatch = itemContent.match(/<img[^>]+src="([^"]+)"/i);
         if (imgMatch) image = imgMatch[1];
+
+        // ✅ Fallback : si pas d'image, on utilise le logo du site source
+        if (!image) {
+          if (source.name === 'Quotidiag') {
+            image = 'https://www.quotidiag.fr/wp-content/uploads/2024/03/cropped-LOGO-QUOTIDIAG-couleurs-1-32x32.png';
+          } else if (source.name === 'Infodiag') {
+            image = 'https://infodiag.fr/wp-content/uploads/2021/10/cropped-Logo2-32x32.png';
+          }
+        }
 
         if (titre && url) {
           allArticles.push({ titre, url, date, source: source.name, image });
