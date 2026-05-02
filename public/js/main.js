@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ---------- Suppression de l'URL au survol (liens d'ancrage) ----------
-  document.querySelectorAll('a[href^="#"], a[href*="/#"]').forEach(link => link.setAttribute('title', ''));
-
   // ---------- Menu burger ----------
   const burger = document.querySelector('.burger');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -25,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sentinel = document.getElementById('top-sentinel');
   if (scrollBtn && sentinel) {
     const sentinelObserver = new IntersectionObserver(([entry]) => {
+      // si la sentinelle n'est plus visible, on affiche le bouton
       scrollBtn.style.display = entry.isIntersecting ? 'none' : 'flex';
     }, { threshold: 0 });
     sentinelObserver.observe(sentinel);
