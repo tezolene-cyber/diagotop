@@ -157,9 +157,7 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  transform: translateZ(0);
   backface-visibility: hidden;
-  will-change: transform;
 }
 
 .hero-title { font-size: clamp(42px, 6vw, 64px); font-weight: 900; line-height: 1.1; color: var(--black); margin-bottom: 24px; }
