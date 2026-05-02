@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- Liens d'ancrage (délégation) ----------
   document.addEventListener('click', (e) => {
+  document.querySelectorAll('a[href^="#"]').forEach(l => l.setAttribute('title', ''));
     const anchor = e.target.closest('a[href^="#"]');
     if (anchor) {
       const target = document.querySelector(anchor.getAttribute('href'));
