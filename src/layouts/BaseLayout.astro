@@ -97,6 +97,26 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID || 'G-193H6KEEYR';
       ]
     }
   </script>
+
+  <!-- Optimisation : chargement non bloquant des CSS générés par Astro -->
+  <script is:inline>
+    (function() {
+      var links = document.querySelectorAll('link[rel="stylesheet"]');
+      links.forEach(function(link) {
+        var href = link.href;
+        if (href && link.media !== 'print') {
+          var preload = document.createElement('link');
+          preload.rel = 'preload';
+          preload.as = 'style';
+          preload.href = href;
+          preload.onload = function() {
+            this.rel = 'stylesheet';
+          };
+          link.parentNode.replaceChild(preload, link);
+        }
+      });
+    })();
+  </script>
 </head>
 <body>
   <div id="top-sentinel" aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 1px; width: 100%; pointer-events: none;"></div>
